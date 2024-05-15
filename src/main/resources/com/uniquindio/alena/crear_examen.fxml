@@ -9,14 +9,14 @@
 
 <?import javafx.scene.text.Text?>
 <HBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.uniquindio.alena.HelloController">
+      fx:controller="com.uniquindio.alena.controllers.CrearExamenController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
    </padding>
 
    <VBox spacing="10.0">
       <Text text="Banco de Preguntas"/>
-      <ListView fx:id="listaBancoPreguntas"/>
+      <ListView fx:id="questionListView"/>
       <Button text="Añadir al Examen"/>
       <Button text="Crear Nueva Pregunta"/>
    </VBox>

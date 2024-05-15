@@ -13,6 +13,6 @@ module com.uniquindio.alena {
     requires java.sql;
     requires com.oracle.database.jdbc;
 
-    opens com.uniquindio.alena to javafx.fxml;
-    exports com.uniquindio.alena;
+    exports com.uniquindio.alena.controllers;
+    opens com.uniquindio.alena.controllers to javafx.fxml;
 }
