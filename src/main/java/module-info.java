@@ -10,6 +10,8 @@ module com.uniquindio.alena {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
+    requires com.oracle.database.jdbc;
 
     opens com.uniquindio.alena to javafx.fxml;
     exports com.uniquindio.alena;

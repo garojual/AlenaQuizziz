@@ -1,0 +1,27 @@
+.main-container {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20;
+}
+
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20 0;
+}
+
+ListView {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 150px;
+}
+
+Button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+Button:hover {
+    -fx-background-color: #45a049;
+}
