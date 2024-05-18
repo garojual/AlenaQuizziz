@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 public class CrearExamenController implements Initializable {
 
     private static final String SQL_PREGUNTAS_BANCO = "SELECT TEMA, ENUNCIADO, TIPO_PREGUNTA FROM preguntas_publicas_por_tema";
+
     @FXML
     private ListView<String> questionListView;
 
@@ -52,7 +53,7 @@ public class CrearExamenController implements Initializable {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(SQL_PREGUNTAS_BANCO);
         while (resultSet.next()) {
-            String questionText = resultSet.getString("tema") + resultSet.getString("enunciado");
+            String questionText = resultSet.getString("enunciado");
             questions.add(questionText);
         }
         return questions;

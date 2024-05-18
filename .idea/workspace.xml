@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="connection to database and creation of base interfaces">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/objects/Pregunta.java" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="load questions from database to interface">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b05156cf-3b42-48f6-82fc-3236394d42b6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b05156cf-3b42-48f6-82fc-3236394d42b6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/DataBaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +26,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -40,9 +36,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2gTXWclxsRAJqxK8vcyq1TJ34Kk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,6 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/juliana/Documents/Docs U/Bases de datos/Alena/lib/ojdbc11.jar",
     "node.js.detected.package.eslint": "true",
@@ -119,7 +116,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715722577041</updated>
-      <workItem from="1715722578173" duration="15881000" />
+      <workItem from="1715722578173" duration="16232000" />
+      <workItem from="1715798841045" duration="2086000" />
     </task>
     <task id="LOCAL-00001" summary="connection to database and creation of base interfaces">
       <option name="closed" value="true" />
@@ -129,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715736525671</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="load questions from database to interface">
+      <option name="closed" value="true" />
+      <created>1715742597431</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715742597431</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +154,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="connection to database and creation of base interfaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="connection to database and creation of base interfaces" />
+    <MESSAGE value="load questions from database to interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="load questions from database to interface" />
   </component>
 </project>

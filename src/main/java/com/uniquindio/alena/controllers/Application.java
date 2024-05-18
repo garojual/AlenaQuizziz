@@ -25,7 +25,7 @@ public class Application extends javafx.application.Application {
         controller.setDatabaseConnection(connection);
 
         Scene scene = new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-        stage.setTitle("Alena!");
+        stage.setTitle("Alena");
         stage.setScene(scene);
         stage.show();
     }
