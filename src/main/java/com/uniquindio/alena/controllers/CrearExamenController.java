@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class CrearExamenController implements Initializable {
 
-    private static final String SQL_PREGUNTAS_BANCO = "SELECT TEMA, ENUNCIADO, TIPO_PREGUNTA FROM preguntas_publicas_por_tema";
+    private static final String SQL_PREGUNTAS_BANCO = "SELECT NOMBRE_TEMA, ENUNCIADO, TIPO_PREGUNTA FROM preguntas_publicas_por_tema";
 
     @FXML
     private ListView<String> questionListView;
