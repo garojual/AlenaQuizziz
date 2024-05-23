@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="load questions from database to interface">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b05156cf-3b42-48f6-82fc-3236394d42b6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Created &quot;New Question&quot; first screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +23,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "garojual"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="87180a8c-7d3a-462a-8326-e07f91a50bde" />
+        <option name="url" value="https://github.com/Julianareinac/AlenaQuizziz.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -114,7 +124,7 @@
       <updated>1715722577041</updated>
       <workItem from="1715722578173" duration="16232000" />
       <workItem from="1715798841045" duration="2086000" />
-      <workItem from="1716404742480" duration="1834000" />
+      <workItem from="1716404742480" duration="6146000" />
     </task>
     <task id="LOCAL-00001" summary="connection to database and creation of base interfaces">
       <option name="closed" value="true" />
@@ -132,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715742597431</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created &quot;New Question&quot; first screen">
+      <option name="closed" value="true" />
+      <created>1716413733419</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716413733419</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +170,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="connection to database and creation of base interfaces" />
     <MESSAGE value="load questions from database to interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="load questions from database to interface" />
+    <MESSAGE value="Created &quot;New Question&quot; first screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created &quot;New Question&quot; first screen" />
   </component>
 </project>
