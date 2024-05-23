@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_mult_respuesta.fxml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_mult_resp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" afterDir="false" />
     </list>
@@ -167,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716430994865</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons">
+      <option name="closed" value="true" />
+      <created>1716436477442</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716436477442</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +200,7 @@
     <MESSAGE value="Created &quot;New Question&quot; first screen" />
     <MESSAGE value="Fixed crear_examen.fxml" />
     <MESSAGE value="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml" />
+    <MESSAGE value="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons" />
   </component>
 </project>
