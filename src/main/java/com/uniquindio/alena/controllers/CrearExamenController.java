@@ -2,10 +2,10 @@ package com.uniquindio.alena.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -16,13 +16,18 @@ public class CrearExamenController implements Initializable {
 
     private static final String SQL_PREGUNTAS_BANCO = "SELECT NOMBRE_TEMA, ENUNCIADO, TIPO_PREGUNTA FROM preguntas_publicas_por_tema";
     private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA FROM tema";
-    private static final String CALL_FUNCTION_SQL = "{ ? = call get_preguntas_por_tema(?) }";
+    private static final String CALL_QUESTIONS_BY_TOPIC = "{ ? = call get_preguntas_por_tema(?) }";
+
+    private static final String CALL_ADD_QUESTION = "{ call add_pregunta_examen(?, ?, ?) }";
 
     @FXML
     private ListView<String> questionListView;
 
     @FXML
     private ComboBox<String> temasList;
+
+    @FXML
+    private ListView<String> listaExamenActual;
 
     private DataBaseConnection databaseConnection;
 
@@ -78,7 +83,7 @@ public class CrearExamenController implements Initializable {
             Connection connection = databaseConnection.getConnection();
 
             // Preparar la llamada al procedimiento almacenado
-            CallableStatement callableStatement = connection.prepareCall(CALL_FUNCTION_SQL);
+            CallableStatement callableStatement = connection.prepareCall(CALL_QUESTIONS_BY_TOPIC);
             callableStatement.registerOutParameter(1, Types.REF_CURSOR);
             callableStatement.setString(2, tema);
 
@@ -112,6 +117,44 @@ public class CrearExamenController implements Initializable {
             temas.add(tema);
         }
         return temas;
+    }
+
+    @FXML
+    private void onAddButtonClicked(ActionEvent event) {
+        String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
+        if (selectedQuestion != null) {
+            // Añadir la pregunta seleccionada a la lista de preguntas del examen
+            listaExamenActual.getItems().add(selectedQuestion);
+
+            // Eliminar la pregunta seleccionada de la lista de preguntas generales
+            questionListView.getItems().remove(selectedQuestion);
+
+            // Lógica para añadir la pregunta al examen en la base de datos
+            String selectedTema = temasList.getValue();
+            if (selectedTema != null) {
+                addQuestionToExam(selectedTema, selectedQuestion);
+            }
+        }
+    }
+
+    private void addQuestionToExam(String tema, String pregunta) {
+        try {
+            Connection connection = databaseConnection.getConnection();
+
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement callableStatement = connection.prepareCall(CALL_ADD_QUESTION);
+            callableStatement.setString(1, tema);
+            callableStatement.setString(2, pregunta);
+
+            // Ejecutar la llamada al procedimiento almacenado
+            callableStatement.execute();
+
+            // Cerrar la conexión después de usarla
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar la excepción (mostrar un mensaje de error, registrarla, etc.)
+        }
     }
 
 

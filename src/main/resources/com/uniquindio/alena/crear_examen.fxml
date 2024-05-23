@@ -16,7 +16,7 @@
       <Text layoutX="10.0" layoutY="23.0" text="Examen" />
       <ListView fx:id="listaExamenActual" prefHeight="156.0" prefWidth="435.0" />
       <Button text="Crear Nueva Pregunta" />
-      <Button text="Añadir al Examen" />
+      <Button onAction="#onAddButtonClicked" text="Añadir al Examen" />
    </VBox>
 
    <VBox prefHeight="460.0" prefWidth="193.0" spacing="10.0">

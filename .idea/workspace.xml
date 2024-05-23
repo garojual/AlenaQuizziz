@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="created basic procedures and triggers">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="filtered questions by topic">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen.fxml" afterDir="false" />
@@ -170,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716431451046</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="filtered questions by topic">
+      <option name="closed" value="true" />
+      <created>1716435164326</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716435164326</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +198,7 @@
     <MESSAGE value="load questions from database to interface" />
     <MESSAGE value="Created &quot;New Question&quot; first screen" />
     <MESSAGE value="created basic procedures and triggers" />
-    <option name="LAST_COMMIT_MESSAGE" value="created basic procedures and triggers" />
+    <MESSAGE value="filtered questions by topic" />
+    <option name="LAST_COMMIT_MESSAGE" value="filtered questions by topic" />
   </component>
 </project>
