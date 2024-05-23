@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.CrearPreguntaMultRespuesta">
+   <children>
+      <VBox alignment="CENTER" prefWidth="600.0">
+         <children>
+            <Label text="Nueva Pregunta">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutY="42.0" prefHeight="63.0" prefWidth="600.0">
+         <children>
+            <Label text="Tipo: Verdadero / Falso">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label text="Tema:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </VBox>
+      <HBox layoutY="105.0" prefHeight="110.0" prefWidth="600.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Enunciado">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <TextArea prefHeight="44.0" prefWidth="450.0" />
+         </children>
+         <padding>
+            <Insets left="30.0" right="30.0" top="15.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="231.0" prefHeight="50.0" prefWidth="600.0">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+         <children>
+            <RadioButton mnemonicParsing="false" text="Verdadero">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="Falso">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="281.0" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Cancelar">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Crear Pregunta">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

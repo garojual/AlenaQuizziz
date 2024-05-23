@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Fixed crear_examen.fxml">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_1.xml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_mult_respuesta.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +125,7 @@
       <updated>1715722577041</updated>
       <workItem from="1715722578173" duration="16232000" />
       <workItem from="1715798841045" duration="2086000" />
-      <workItem from="1716404742480" duration="9349000" />
+      <workItem from="1716404742480" duration="12780000" />
     </task>
     <task id="LOCAL-00001" summary="connection to database and creation of base interfaces">
       <option name="closed" value="true" />
@@ -164,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716428306036</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml">
+      <option name="closed" value="true" />
+      <created>1716430994865</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716430994865</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +189,7 @@
     <MESSAGE value="load questions from database to interface" />
     <MESSAGE value="Created &quot;New Question&quot; first screen" />
     <MESSAGE value="Fixed crear_examen.fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed crear_examen.fxml" />
+    <MESSAGE value="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml" />
   </component>
 </project>
