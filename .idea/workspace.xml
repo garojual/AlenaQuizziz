@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="add questions to examn listView">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaUnicaRespuesta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen_preguntas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,7 +63,6 @@
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -128,8 +127,7 @@
       <updated>1715722577041</updated>
       <workItem from="1715722578173" duration="16232000" />
       <workItem from="1715798841045" duration="2086000" />
-      <workItem from="1716404742480" duration="12780000" />
-      <workItem from="1716476820882" duration="3071000" />
+      <workItem from="1716404742480" duration="6146000" />
     </task>
     <task id="LOCAL-00001" summary="connection to database and creation of base interfaces">
       <option name="closed" value="true" />
@@ -155,31 +153,39 @@
       <option name="project" value="LOCAL" />
       <updated>1716413733419</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixed crear_examen.fxml">
+    <task id="LOCAL-00004" summary="created basic procedures and triggers">
       <option name="closed" value="true" />
-      <created>1716428306036</created>
+      <created>1716431389991</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1716428306036</updated>
+      <updated>1716431389991</updated>
     </task>
-    <task id="LOCAL-00005" summary="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml">
+    <task id="LOCAL-00005" summary="created basic procedures and triggers">
       <option name="closed" value="true" />
-      <created>1716430994865</created>
+      <created>1716431451046</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1716430994865</updated>
+      <updated>1716431451046</updated>
     </task>
-    <task id="LOCAL-00006" summary="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons">
+    <task id="LOCAL-00006" summary="filtered questions by topic">
       <option name="closed" value="true" />
-      <created>1716436477442</created>
+      <created>1716435164326</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1716436477442</updated>
+      <updated>1716435164326</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add questions to examn listView">
+      <option name="closed" value="true" />
+      <created>1716439499480</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716439499490</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,9 +206,9 @@
     <MESSAGE value="connection to database and creation of base interfaces" />
     <MESSAGE value="load questions from database to interface" />
     <MESSAGE value="Created &quot;New Question&quot; first screen" />
-    <MESSAGE value="Fixed crear_examen.fxml" />
-    <MESSAGE value="Fixed crear_pregunta_tema.fxml and Created crear_pregunta_unica_respuesta.fxml" />
-    <MESSAGE value="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created crear_pregunta_v_f.fxml, and replaced all checkbox with single answer constraint with radio buttons" />
+    <MESSAGE value="created basic procedures and triggers" />
+    <MESSAGE value="filtered questions by topic" />
+    <MESSAGE value="add questions to examn listView" />
+    <option name="LAST_COMMIT_MESSAGE" value="add questions to examn listView" />
   </component>
 </project>
