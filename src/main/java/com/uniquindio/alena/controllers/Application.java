@@ -7,12 +7,11 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/com/uniquindio/alena/crear_examen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/com/uniquindio/alena/crear_examen_preguntas.fxml"));
         Parent root = fxmlLoader.load();
 
         // Obtiene la instancia del controlador
