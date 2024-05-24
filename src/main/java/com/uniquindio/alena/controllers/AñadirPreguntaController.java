@@ -1,5 +1,4 @@
 package com.uniquindio.alena.controllers;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,22 +10,21 @@ import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AñadirPreguntaController implements Initializable {
 
-    private static final String SQL_PREGUNTAS_BANCO = "SELECT NOMBRE_TEMA, ENUNCIADO, TIPO_PREGUNTA FROM preguntas_publicas_por_tema";
+    private static final String SQL_PREGUNTAS_BANCO = "SELECT ID_PREGUNTA, ENUNCIADO FROM preguntas_publicas_por_tema";
     private String selectedTema;
 
     // Variable para almacenar el ID del examen actual
     private int examenIdExamen;
-    private static final String CALL_QUESTIONS_BY_TOPIC = "{ ? = call get_preguntas_por_tema(?) }";
 
-    private static final String CALL_ADD_QUESTION = "{ call add_pregunta_examen(?, ?, ?) }";
+    private static final String CALL_ADD_QUESTION = "{ call add_preguntas_examen(?, ?) }";
     @FXML
     private Label temaLabel;
-
-
 
     @FXML
     private ListView<String> questionListView;
@@ -34,17 +32,26 @@ public class AñadirPreguntaController implements Initializable {
     @FXML
     private ListView<String> listaExamenActual;
 
+    @FXML
+    private ComboBox<Integer> porcentaje;
+
+    private Map<String, Integer> preguntasMap;
+
     private DataBaseConnection databaseConnection;
 
     public AñadirPreguntaController() {
+        preguntasMap = new HashMap<>();
     }
-
-    // Método initialize y updateQuestionListView...
 
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         try {
+
+            ObservableList<Integer> opciones = FXCollections.observableArrayList(
+                    10,20,30,40,50,60,70,80,90,100
+            );
+            porcentaje.setItems(opciones);
             // Obtener la conexión JDBC
             databaseConnection = new DataBaseConnection();
             Connection connection = databaseConnection.getConnection();
@@ -52,7 +59,6 @@ public class AñadirPreguntaController implements Initializable {
             // Obtener las preguntas de la base de datos y actualizar el ListView
             ObservableList<String> questions = getQuestionsFromDatabase(connection);
             questionListView.setItems(questions);
-
 
             // Cerrar la conexión después de usarla
             connection.close();
@@ -75,28 +81,12 @@ public class AñadirPreguntaController implements Initializable {
         ObservableList<String> questions = FXCollections.observableArrayList();
         // Si se ha seleccionado un tema, se obtienen las preguntas de ese tema.
         if (selectedTema != null) {
-            CallableStatement callableStatement = connection.prepareCall(CALL_QUESTIONS_BY_TOPIC);
-            callableStatement.registerOutParameter(1, Types.REF_CURSOR);
-            callableStatement.setString(2, selectedTema);
-
-            // Ejecutar la llamada al procedimiento almacenado
-            callableStatement.execute();
-
-            // Obtener el cursor devuelto por el procedimiento almacenado
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
-
-            while (resultSet.next()) {
-                String questionText = resultSet.getString("ENUNCIADO");
-                questions.add(questionText);
-            }
-            // Cerrar la conexión después de usarla
-            connection.close();
-        } else {
-            // Si no se ha seleccionado un tema, se obtienen todas las preguntas.
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_PREGUNTAS_BANCO);
             while (resultSet.next()) {
-                String questionText = resultSet.getString("enunciado");
+                int questionId = resultSet.getInt("ID_PREGUNTA");
+                String questionText = resultSet.getString("ENUNCIADO");
+                preguntasMap.put(questionText, questionId);
                 questions.add(questionText);
             }
         }
@@ -110,24 +100,24 @@ public class AñadirPreguntaController implements Initializable {
             // Añadir la pregunta seleccionada a la lista de preguntas del examen
             listaExamenActual.getItems().add(selectedQuestion);
 
-            // Eliminar la pregunta seleccionada de la lista de preguntas generales
-            questionListView.getItems().remove(selectedQuestion);
+            // Obtener el ID de la pregunta seleccionada
+            int questionId = preguntasMap.get(selectedQuestion);
 
             // Lógica para añadir la pregunta al examen en la base de datos
-            if (selectedTema != null) {
-                addQuestionToExam(selectedTema, selectedQuestion);
+            if (examenIdExamen != 0) {
+                addQuestionToExam(questionId);
             }
         }
     }
 
-    private void addQuestionToExam(String tema, String pregunta) {
+    private void addQuestionToExam(int preguntaId) {
         try {
             Connection connection = databaseConnection.getConnection();
 
             // Preparar la llamada al procedimiento almacenado
             CallableStatement callableStatement = connection.prepareCall(CALL_ADD_QUESTION);
-            callableStatement.setString(1, tema);
-            callableStatement.setString(2, pregunta);
+            callableStatement.setInt(1, examenIdExamen);
+            callableStatement.setInt(2, preguntaId);
 
             // Ejecutar la llamada al procedimiento almacenado
             callableStatement.execute();
@@ -140,10 +130,7 @@ public class AñadirPreguntaController implements Initializable {
         }
     }
 
-
-
     public void setDatabaseConnection(DataBaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
-
 }

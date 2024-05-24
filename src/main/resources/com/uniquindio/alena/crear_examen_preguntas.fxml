@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="532.0" prefWidth="618.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
+<HBox prefHeight="532.0" prefWidth="738.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 
    <VBox spacing="10.0">
       <HBox alignment="CENTER">
-      <Label fx:id= "temaLabel" text="Tema" />
+      <Label fx:id="temaLabel" text="Tema" />
       </HBox>
       <Text text="Banco de Preguntas" />
       <ListView fx:id="questionListView" prefHeight="172.0" prefWidth="528.0" />
@@ -25,4 +29,13 @@
       </HBox>
       <Button text="Eliminar pregunta" />
    </VBox>
+   <HBox prefHeight="258.0" prefWidth="106.0">
+      <children>
+         <ComboBox fx:id="porcentaje" prefHeight="26.0" prefWidth="112.0" promptText="Porcentaje">
+            <HBox.margin>
+               <Insets top="60.0" />
+            </HBox.margin>
+         </ComboBox>
+      </children>
+   </HBox>
 </HBox>
