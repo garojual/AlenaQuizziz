@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="add questions to examn listView">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaUnicaRespuesta.java" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="add questions controllers">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716439499490</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add questions controllers">
+      <option name="closed" value="true" />
+      <created>1716498387112</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716498387112</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +217,7 @@
     <MESSAGE value="created basic procedures and triggers" />
     <MESSAGE value="filtered questions by topic" />
     <MESSAGE value="add questions to examn listView" />
-    <option name="LAST_COMMIT_MESSAGE" value="add questions to examn listView" />
+    <MESSAGE value="add questions controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="add questions controllers" />
   </component>
 </project>
