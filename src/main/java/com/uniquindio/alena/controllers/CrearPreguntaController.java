@@ -29,6 +29,7 @@ public class CrearPreguntaController implements Initializable {
     private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA FROM tema";
     private static final String CALL_ADD_QUESTION = "{ call add_pregunta(?, ?, ?, ?, ?, ?, ?, ? }";
 
+
     private Map<String,String> seleccion =  new HashMap<>();
 
 
@@ -86,17 +87,57 @@ public class CrearPreguntaController implements Initializable {
 
             // Cambiar a la siguiente pantalla
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml"));
-                Parent root = loader.load();
+                switch (selectedTipoPregunta) {
+                    case "Unica respuesta":
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml"));
+                            Parent root = loader.load();
 
-                // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
-                CrearPreguntaUnicaRespuesta controller = loader.getController();
-                controller.setSeleccion(seleccion);
+                            // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
+                            CrearPreguntaUnicaRespuesta controller = loader.getController();
+                            controller.setSeleccion(seleccion);
 
-                // Mostrar la nueva pantalla
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+                            // Mostrar la nueva pantalla
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    case "Verdadero/Falso":
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                            Parent root = loader.load();
+
+                            // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
+                            CrearPreguntaVF controller = loader.getController();
+                            controller.setSeleccion(seleccion);
+
+                            // Mostrar la nueva pantalla
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    case "Multiple respuesta":
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_mult_resp.fxml"));
+                            Parent root = loader.load();
+
+                            // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
+                            CrearPreguntaMultipleRespuesta controller = loader.getController();
+                            controller.setSeleccion(seleccion);
+
+                            // Mostrar la nueva pantalla
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Error", "Error al cargar la nueva pantalla: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -105,6 +146,7 @@ public class CrearPreguntaController implements Initializable {
             showAlert("Advertencia", "Debe seleccionar un tema y un tipo de pregunta.", Alert.AlertType.WARNING);
         }
     }
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

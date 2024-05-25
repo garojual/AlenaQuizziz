@@ -3,18 +3,20 @@ package com.uniquindio.alena.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CrearPreguntaUnicaRespuesta implements Initializable {
-    public CrearPreguntaUnicaRespuesta() {
-    }
+public class CrearPreguntaMultipleRespuesta implements Initializable {
+
 
     private DataBaseConnection databaseConnection;
+
+    public CrearPreguntaMultipleRespuesta() {
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -44,5 +46,4 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
     public void setDatabaseConnection(DataBaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
-
 }
