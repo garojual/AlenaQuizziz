@@ -15,29 +15,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class CrearPreguntaController implements Initializable {
     private DataBaseConnection databaseConnection;
-
     private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA FROM tema";
-    private static final String CALL_ADD_QUESTION = "{ call add_pregunta(?, ?, ?, ?, ?, ?, ?, ? }";
-
-    private Map<String,String> seleccion =  new HashMap<>();
-
 
     @FXML
     private ComboBox<String> tipoPregunta;
 
     @FXML
     private ComboBox<String> temaPregunta;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +47,6 @@ public class CrearPreguntaController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-    }
-    public CrearPreguntaController() {
     }
 
     private ObservableList<String> getTemasFromVista(Connection connection) throws SQLException {
@@ -80,18 +66,18 @@ public class CrearPreguntaController implements Initializable {
         String selectedTipoPregunta = tipoPregunta.getValue();
 
         if (selectedTema != null && selectedTipoPregunta != null) {
-            // Guardar la información seleccionada en el Map
-            seleccion.put("tema", selectedTema);
-            seleccion.put("tipoPregunta", selectedTipoPregunta);
+            SharedData sharedData = SharedData.getInstance();
+            sharedData.setSelectedTema(selectedTema);
+            sharedData.setSelectedTipoPregunta(selectedTipoPregunta);
+            sharedData.putSeleccion("tema", selectedTema);
+            sharedData.putSeleccion("tipoPregunta", selectedTipoPregunta);
 
-            // Cambiar a la siguiente pantalla
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml"));
                 Parent root = loader.load();
 
-                // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
+                // Obtener el controlador de la nueva pantalla y pasarle el Singleton (si fuera necesario)
                 CrearPreguntaUnicaRespuesta controller = loader.getController();
-                controller.setSeleccion(seleccion);
 
                 // Mostrar la nueva pantalla
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -105,15 +91,15 @@ public class CrearPreguntaController implements Initializable {
             showAlert("Advertencia", "Debe seleccionar un tema y un tipo de pregunta.", Alert.AlertType.WARNING);
         }
     }
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     public void setDatabaseConnection(DataBaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
-
-
 }
