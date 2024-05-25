@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="add questions controllers">
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="cambios menores">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/presentar_examen.fxml" afterDir="false" />
@@ -190,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716498387112</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="cambios menores">
+      <option name="closed" value="true" />
+      <created>1716588145092</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716588145092</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +223,7 @@
     <MESSAGE value="filtered questions by topic" />
     <MESSAGE value="add questions to examn listView" />
     <MESSAGE value="add questions controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="add questions controllers" />
+    <MESSAGE value="cambios menores" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios menores" />
   </component>
 </project>
