@@ -3,11 +3,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.HashMap;
@@ -22,7 +29,7 @@ public class AñadirPreguntaController implements Initializable {
     // Variable para almacenar el ID del examen actual
     private int examenIdExamen;
 
-    private static final String CALL_ADD_QUESTION = "{ call add_preguntas_examen(?, ?) }";
+    private static final String CALL_ADD_QUESTION = "{ call add_preguntas_examen(?, ?, ?) }";
     @FXML
     private Label temaLabel;
 
@@ -96,7 +103,11 @@ public class AñadirPreguntaController implements Initializable {
     @FXML
     private void onAddButtonClicked(ActionEvent event) {
         String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
-        if (selectedQuestion != null) {
+        Integer selectedOption = porcentaje.getSelectionModel().getSelectedItem();
+        if (selectedOption == null){
+            showAlert("Advertencia", "Debe seleccionar un porcentaje para la pregunta", Alert.AlertType.WARNING);
+        }
+        if (selectedQuestion != null && selectedOption != null) {
             // Añadir la pregunta seleccionada a la lista de preguntas del examen
             listaExamenActual.getItems().add(selectedQuestion);
 
@@ -105,12 +116,32 @@ public class AñadirPreguntaController implements Initializable {
 
             // Lógica para añadir la pregunta al examen en la base de datos
             if (examenIdExamen != 0) {
-                addQuestionToExam(questionId);
+                addQuestionToExam(questionId,selectedOption);
             }
         }
     }
 
-    private void addQuestionToExam(int preguntaId) {
+    @FXML
+    private void OnCreatedButtonClicked(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_tema.fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador de la nueva pantalla y pasarle el Map de selección
+            CrearPreguntaController controller = loader.getController();
+
+
+            // Mostrar la nueva pantalla
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Error al cargar la nueva pantalla: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void addQuestionToExam(int preguntaId, int opcion) {
         try {
             Connection connection = databaseConnection.getConnection();
 
@@ -118,6 +149,7 @@ public class AñadirPreguntaController implements Initializable {
             CallableStatement callableStatement = connection.prepareCall(CALL_ADD_QUESTION);
             callableStatement.setInt(1, examenIdExamen);
             callableStatement.setInt(2, preguntaId);
+            callableStatement.setInt(3,opcion);
 
             // Ejecutar la llamada al procedimiento almacenado
             callableStatement.execute();
@@ -128,6 +160,12 @@ public class AñadirPreguntaController implements Initializable {
             e.printStackTrace();
             // Manejar la excepción (mostrar un mensaje de error, registrarla, etc.)
         }
+    }
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public void setDatabaseConnection(DataBaseConnection databaseConnection) {

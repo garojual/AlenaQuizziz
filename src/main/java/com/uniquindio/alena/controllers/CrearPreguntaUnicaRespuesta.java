@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CrearPreguntaUnicaRespuesta implements Initializable {
+    public CrearPreguntaUnicaRespuesta() {
+    }
 
     @FXML
     private Label temaLabel;
