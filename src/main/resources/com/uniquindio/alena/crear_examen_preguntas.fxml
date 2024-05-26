@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<HBox prefHeight="532.0" prefWidth="738.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
+<HBox prefHeight="532.0" prefWidth="738.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -24,10 +20,9 @@
       <Text layoutX="10.0" layoutY="23.0" text="Examen" />
       <ListView fx:id="listaExamenActual" prefHeight="156.0" prefWidth="435.0" />
       <HBox alignment="CENTER" spacing="350.0">
-         <Button onAction="#onCreatedButtonClicked"  text="Crear Nueva Pregunta" />
-         <Button prefHeight="26.0" prefWidth="80.0" text="Finalizar" />
+         <Button fx:id="crearPregunta" onAction="#OnCreatedButtonClicked" text="Crear Nueva Pregunta" />
+         <Button fx:id="finalizar" onAction="#onFinalizar" prefHeight="26.0" prefWidth="80.0" text="Crear" />
       </HBox>
-      <Button text="Eliminar pregunta" />
    </VBox>
    <HBox prefHeight="258.0" prefWidth="106.0">
       <children>

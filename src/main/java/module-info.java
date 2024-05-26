@@ -11,7 +11,8 @@ module com.uniquindio.alena {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
-    requires com.oracle.database.jdbc;
+    requires ojdbc10;
+
 
     exports com.uniquindio.alena.controllers;
     opens com.uniquindio.alena.controllers to javafx.fxml;

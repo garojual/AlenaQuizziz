@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="449.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearExamenController">
+<AnchorPane prefHeight="588.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearExamenController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="600.0">
          <children>
@@ -44,23 +44,7 @@
                   <Insets right="28.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="250.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutY="121.0" prefHeight="50.0" prefWidth="600.0">
-         <padding>
-            <Insets left="30.0" right="30.0" />
-         </padding>
-         <children>
-            <Label text="Tiempo limite">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="45.0" />
-               </HBox.margin>
-            </Label>
-            <TextField prefWidth="250.0" />
+            <TextField fx:id="nomExamen" prefWidth="250.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="171.0" prefHeight="50.0" prefWidth="600.0">
@@ -76,7 +60,7 @@
                   <Insets right="57.0" />
                </HBox.margin>
             </Label>
-            <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <TextArea fx:id="descripcion" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="221.0" prefHeight="50.0" prefWidth="600.0">
@@ -92,10 +76,10 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="250.0" />
+            <TextField fx:id="numPreguntas" prefHeight="26.0" prefWidth="79.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutY="271.0" prefHeight="50.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="120.0" prefHeight="50.0" prefWidth="600.0">
          <padding>
             <Insets left="30.0" right="30.0" />
          </padding>
@@ -108,7 +92,7 @@
                   <Insets right="57.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="temasList" prefWidth="150.0" promptText="Tema" />
+            <ComboBox fx:id="temasList" onAction="#onTemaSelected" prefWidth="150.0" promptText="Tema" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="321.0" prefHeight="50.0" prefWidth="600.0">
@@ -124,8 +108,75 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Label>
-            <DatePicker />
+            <DatePicker fx:id="fecha" />
          </children>
       </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="3.0" layoutY="371.0" prefHeight="50.0" prefWidth="600.0">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+         <children>
+            <Label text="Categoria">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="57.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="categoria" onAction="#onCategoriaSelected" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="271.0" prefHeight="50.0" prefWidth="600.0">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+         <children>
+            <Label text="Numero Preguntas por alumno">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="numPregAlumno" prefHeight="26.0" prefWidth="78.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="3.0" layoutY="430.0" prefHeight="50.0" prefWidth="600.0">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+         <children>
+            <Label text="Hora inicio">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Label>
+            <Spinner fx:id="horaInicio" prefHeight="26.0" prefWidth="78.0" />
+            <Spinner fx:id="minutosInicio" layoutX="118.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="480.0" prefHeight="50.0" prefWidth="600.0">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+         <children>
+            <Label text="Hora final">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Label>
+            <Spinner fx:id="horaFin" prefHeight="26.0" prefWidth="69.0" />
+            <Spinner fx:id="minutosFin" layoutX="112.0" layoutY="22.0" prefHeight="26.0" prefWidth="69.0" />
+         </children>
+      </HBox>
+      <Button fx:id="continuar" layoutX="487.0" layoutY="544.0" mnemonicParsing="false" onAction="#onContinueButtonClicked" prefHeight="26.0" prefWidth="79.0" text="Continuar" />
    </children>
 </AnchorPane>

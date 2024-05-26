@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class CrearPreguntaController implements Initializable {
     private DataBaseConnection databaseConnection;
+    private ShowAlert showAlert = new ShowAlert();
     private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA FROM tema";
 
     @FXML
@@ -67,37 +68,92 @@ public class CrearPreguntaController implements Initializable {
 
         if (selectedTema != null && selectedTipoPregunta != null) {
             SharedData sharedData = SharedData.getInstance();
-            sharedData.setSelectedTema(selectedTema);
+            sharedData.setSelectedTemaPregunta(selectedTema);
             sharedData.setSelectedTipoPregunta(selectedTipoPregunta);
             sharedData.putSeleccion("tema", selectedTema);
             sharedData.putSeleccion("tipoPregunta", selectedTipoPregunta);
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml"));
-                Parent root = loader.load();
+            switch (selectedTipoPregunta){
+                case "Unica respuesta":
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml"));
+                    Parent root = loader.load();
 
-                // Obtener el controlador de la nueva pantalla y pasarle el Singleton (si fuera necesario)
-                CrearPreguntaUnicaRespuesta controller = loader.getController();
+                    // Mostrar la nueva pantalla
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                case "Multiple respuesta":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_mult_resp.fxml"));
+                        Parent root = loader.load();
 
-                // Mostrar la nueva pantalla
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error", "Error al cargar la nueva pantalla: " + e.getMessage(), Alert.AlertType.ERROR);
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "Verdadero/Falso":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        Parent root = loader.load();
+
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "Emparejar":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        Parent root = loader.load();
+
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "Ordenar":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        Parent root = loader.load();
+
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "Completar":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        Parent root = loader.load();
+
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
             }
+
         } else {
-            showAlert("Advertencia", "Debe seleccionar un tema y un tipo de pregunta.", Alert.AlertType.WARNING);
+            showAlert.error("Debe seleccionar un tema y un tipo de pregunta.");
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
 
     public void setDatabaseConnection(DataBaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;

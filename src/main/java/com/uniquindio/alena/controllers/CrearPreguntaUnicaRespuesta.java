@@ -11,6 +11,7 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
     public CrearPreguntaUnicaRespuesta() {
     }
 
+    SharedData sharedData = SharedData.getInstance();
     @FXML
     private Label temaLabel;
 
@@ -19,8 +20,8 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SharedData sharedData = SharedData.getInstance();
-        String selectedTema = sharedData.getSelectedTema();
+
+        String selectedTema = sharedData.getSelectedTemaPregunta();
         String selectedTipoPregunta = sharedData.getSelectedTipoPregunta();
 
         temaLabel.setText(selectedTema);
