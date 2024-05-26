@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="532.0" prefWidth="738.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
+<HBox prefHeight="728.0" prefWidth="738.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.AñadirPreguntaController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -15,8 +19,10 @@
       <Label fx:id="temaLabel" text="Tema" />
       </HBox>
       <Text text="Banco de Preguntas" />
-      <ListView fx:id="questionListView" prefHeight="172.0" prefWidth="528.0" />
+      <ListView fx:id="questionListView" onMouseClicked="#onListViewClicked" prefHeight="172.0" prefWidth="528.0" />
       <Button onAction="#onAddButtonClicked" text="Añadir al Examen" />
+      <Text text="Subpreguntas" />
+      <ListView fx:id="questionListView1" prefHeight="172.0" prefWidth="528.0" />
       <Text layoutX="10.0" layoutY="23.0" text="Examen" />
       <ListView fx:id="listaExamenActual" prefHeight="156.0" prefWidth="435.0" />
       <HBox alignment="CENTER" spacing="350.0">

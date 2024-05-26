@@ -44,9 +44,13 @@
         private ListView<String> listaExamenActual;
 
         @FXML
+        private ListView<String> listaSubPreguntas;
+
+        @FXML
         private ComboBox<Integer> porcentaje;
 
         private Map<String, Integer> preguntasMap;
+        private Map<String, Integer> preguntasHijasMap;
 
         private DataBaseConnection databaseConnection;
         private String selectedTema;
@@ -120,6 +124,7 @@
         private void onAddButtonClicked(ActionEvent event) {
             String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
             Integer selectedOption = porcentaje.getSelectionModel().getSelectedItem();
+            String selectedQuestionType = null;
             if (selectedOption == null){
                 showAlert.error("Debe seleccionar un porcentaje para la pregunta");
             }
@@ -127,18 +132,45 @@
                 showAlert.error("Ya agregó todas las preguntas del examen");
             }
             if (selectedQuestion != null && selectedOption != null && numPreguntas < sharedData.getNumPreguntas()) {
-                // Añadir la pregunta seleccionada a la lista de preguntas del examen
-                listaExamenActual.getItems().add(selectedQuestion);
-                numPreguntas += 1;
-                questionListView.getItems().remove(selectedQuestion);
+                if(selectedQuestionType != "Pregunta padre") {
+                    // Añadir la pregunta seleccionada a la lista de preguntas del examen
+                    listaExamenActual.getItems().add(selectedQuestion);
+                    numPreguntas += 1;
+                    questionListView.getItems().remove(selectedQuestion);
 
-                // Obtener el ID de la pregunta seleccionada
-                int questionId = preguntasMap.get(selectedQuestion);
+                    // Obtener el ID de la pregunta seleccionada
+                    int questionId = preguntasMap.get(selectedQuestion);
 
-                // Lógica para añadir la pregunta al examen en la base de datos
-                if (examenIdExamen != 0) {
-                    addQuestionToExam(questionId,selectedOption);
+                    // Lógica para añadir la pregunta al examen en la base de datos
+                    if (examenIdExamen != 0) {
+                        addQuestionToExam(questionId, selectedOption);
+                    }
                 }
+                else{
+
+                }
+            }
+        }
+
+        @FXML
+        private void onListViewClicked(){
+            try {
+                preguntasHijasMap = new HashMap<>();
+                String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
+                if (selectedQuestion != null) {
+                    // Obtener el ID de la pregunta seleccionada
+                    int questionId = preguntasMap.get(selectedQuestion);
+                    /*
+                    * Caja negra
+                    * a partir de la id, devolver en un segundo hashmap las claves y descripciones de las preguntas
+                    * [preguntasHijasMap]
+                    * */
+                    preguntasHijasMap.forEach((key, value) -> {
+                        listaSubPreguntas.getItems().add(key);
+                    });
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 

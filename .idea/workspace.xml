@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="insert exams to the database">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AsignarPorcentajeSubpreguntas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/asignar_porcentaje_subpreguntas.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearExamenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/SharedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/SharedData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/DataBaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen_preguntas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_examen_preguntas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_asociar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_asociar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
