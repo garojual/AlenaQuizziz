@@ -128,11 +128,13 @@ public class CrearExamenController implements Initializable {
         String docenteId = sharedData.getDocenteId();
         System.out.println(docenteId);
         int numPregunta = Integer.parseInt(numPreguntas.getText());
+        sharedData.setNumPreguntas(numPregunta);
         System.out.println(numPregunta);
         LocalDateTime fechaHoraInicio = LocalDateTime.of(fecha.getValue(), LocalTime.of(horaInicio.getValue(), minutosInicio.getValue()));
         LocalDateTime fechaHoraFin = LocalDateTime.of(fecha.getValue(), LocalTime.of(horaFin.getValue(), minutosFin.getValue()));
         String desc = descripcion.getText();
         int numPregPorExamen = Integer.parseInt(numPregAlumno.getText());
+        sharedData.setPregPorAlumno(numPregPorExamen);
         int temaId = sharedData.getTemasMapExam(temasList.getValue());
         sharedData.setTemasMapExam(temasList.getValue(),temaId);
         System.out.println(sharedData.getTemasMapExam(temasList.getValue()));

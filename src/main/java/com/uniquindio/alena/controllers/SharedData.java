@@ -9,10 +9,13 @@
         private String selectedTipoPregunta;
         private String selectedTemaExamen;
         private String selectedCategoria;
+        private int numPreguntas;
+        private int pregPorAlumno;
         private final Map<String, String> seleccion;
         private Map<String, Integer> temasMapExam = new HashMap<>();
         private Map<String, Integer> categoriasMapExam = new HashMap<>();
         private String docenteId = "1202589320";
+        private int idCurso= 1;
         private String alumnoId;
         private int idExamen;
 
@@ -103,5 +106,29 @@
 
         public void setSelectedCategoria(String selectedCategoria) {
             this.selectedCategoria = selectedCategoria;
+        }
+
+        public int getNumPreguntas() {
+            return numPreguntas;
+        }
+
+        public void setNumPreguntas(int numPreguntas) {
+            this.numPreguntas = numPreguntas;
+        }
+
+        public int getPregPorAlumno() {
+            return pregPorAlumno;
+        }
+
+        public void setPregPorAlumno(int pregPorAlumno) {
+            this.pregPorAlumno = pregPorAlumno;
+        }
+
+        public int getIdCurso() {
+            return idCurso;
+        }
+
+        public void setIdCurso(int idCurso) {
+            this.idCurso = idCurso;
         }
     }

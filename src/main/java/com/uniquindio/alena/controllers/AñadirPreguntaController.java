@@ -27,13 +27,13 @@
         private SharedData sharedData = SharedData.getInstance();
         private ShowAlert showAlert = new ShowAlert();
 
-        private static final String SQL_PREGUNTAS_BANCO = "{ ? = calL GET_PREGUNTAS_POR_TEMA(?) }";
+        private static final String SQL_PREGUNTAS_BANCO = "{ ? = call GET_PREGUNTAS_POR_TEMA(?) }";
 
 
         // Variable para almacenar el ID del examen actual
         private int examenIdExamen= sharedData.getIdExamen() ;
 
-        private static final String CALL_ADD_QUESTION = "{ call add_preguntas_examen(?, ?, ?) }";
+        private static final String CALL_ADD_QUESTION = "{ call add_pregunta_examen(?, ?, ?) }";
         @FXML
         private Label temaLabel;
 
@@ -50,6 +50,7 @@
 
         private DataBaseConnection databaseConnection;
         private String selectedTema;
+        int numPreguntas=0;
 
         public AñadirPreguntaController() {
             preguntasMap = new HashMap<>();
@@ -120,11 +121,16 @@
             String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
             Integer selectedOption = porcentaje.getSelectionModel().getSelectedItem();
             if (selectedOption == null){
-                showAlert.advertencia("Debe seleccionar un porcentaje para la pregunta");
+                showAlert.error("Debe seleccionar un porcentaje para la pregunta");
             }
-            if (selectedQuestion != null && selectedOption != null) {
+            if(numPreguntas > sharedData.getNumPreguntas()){
+                showAlert.error("Ya agregó todas las preguntas del examen");
+            }
+            if (selectedQuestion != null && selectedOption != null && numPreguntas < sharedData.getNumPreguntas()) {
                 // Añadir la pregunta seleccionada a la lista de preguntas del examen
                 listaExamenActual.getItems().add(selectedQuestion);
+                numPreguntas += 1;
+                questionListView.getItems().remove(selectedQuestion);
 
                 // Obtener el ID de la pregunta seleccionada
                 int questionId = preguntasMap.get(selectedQuestion);
@@ -153,7 +159,19 @@
 
         @FXML
         private void onFinalizar(ActionEvent event){
+            try {
+                Connection connection = databaseConnection.getConnection();
+                String CALL_FINALIZAR_EXAMEN = "{ call finalizar_examen (?) }";
+                CallableStatement callableStatement = connection.prepareCall(CALL_FINALIZAR_EXAMEN);
+                callableStatement.setInt(1,examenIdExamen);
+                String CALL_PREGUNTAS_ALUMNO = "{ call generar_examenes_alumno (?,?) }";
+                CallableStatement callableStatement1 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                callableStatement1.setInt(1,sharedData.getIdCurso());
+                callableStatement.setInt(2,examenIdExamen);
 
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         private void addQuestionToExam(int preguntaId, int opcion) {
