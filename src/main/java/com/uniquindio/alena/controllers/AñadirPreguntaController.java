@@ -160,6 +160,25 @@
                 if (selectedQuestion != null) {
                     // Obtener el ID de la pregunta seleccionada
                     int questionId = preguntasMap.get(selectedQuestion);
+                    System.out.println(questionId);
+                    String PREGUNTAS_HIJAS = "{ ? = call get_preguntas_hijas(?) }";
+                    Connection connection=databaseConnection.getConnection();
+                    CallableStatement callableStatement = connection.prepareCall(PREGUNTAS_HIJAS);
+                    callableStatement.registerOutParameter(1, REF_CURSOR);
+                    callableStatement.setInt(2,questionId);
+                    // Ejecuta la llamada a la función
+                    callableStatement.execute();
+
+                    // Obtiene el cursor devuelto por la función
+                    try (ResultSet rs = (ResultSet) callableStatement.getObject(1)) {
+                        // Procesa los resultados del cursor
+                        while (rs.next()) {
+                            int idPregunta = rs.getInt("ID_PREGUNTA");
+                            String enunciado = rs.getString("ENUNCIADO");
+                            System.out.println(enunciado);
+                            preguntasHijasMap.put(enunciado,idPregunta);
+                        }
+                    }
                     /*
                     * Caja negra
                     * a partir de la id, devolver en un segundo hashmap las claves y descripciones de las preguntas
