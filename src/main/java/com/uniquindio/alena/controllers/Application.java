@@ -12,11 +12,11 @@ import java.sql.Connection;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/com/uniquindio/alena/crear_examen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/com/uniquindio/alena/asignar_porcentaje_subpreguntas.fxml"));
         Parent root = fxmlLoader.load();
 
         // Obtiene la instancia del controlador
-        CrearExamenController controller = fxmlLoader.getController();
+        AsignarPorcentajeSubpreguntas controller = fxmlLoader.getController();
 
         // Obtener la conexión a la base de datos
         DataBaseConnection connection = new DataBaseConnection();

@@ -147,7 +147,9 @@
                     }
                 }
                 else{
-
+                    /*
+                    * Conectar a la pantalla de asignar porcentajes
+                    * */
                 }
             }
         }

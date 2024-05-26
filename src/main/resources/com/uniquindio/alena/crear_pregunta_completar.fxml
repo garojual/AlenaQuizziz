@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="343.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.CrearPreguntaCompletar">
+<AnchorPane prefHeight="343.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaCompletar">
    <children>
       <VBox alignment="CENTER" prefWidth="600.0">
          <children>
