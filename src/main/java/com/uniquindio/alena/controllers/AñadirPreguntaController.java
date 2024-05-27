@@ -11,11 +11,13 @@
     import javafx.scene.control.ComboBox;
     import javafx.scene.control.Label;
     import javafx.scene.control.ListView;
+    import javafx.scene.layout.AnchorPane;
     import javafx.stage.Stage;
 
     import java.io.IOException;
     import java.net.URL;
     import java.sql.*;
+    import java.util.ArrayList;
     import java.util.HashMap;
     import java.util.Map;
     import java.util.ResourceBundle;
@@ -49,15 +51,12 @@
         @FXML
         private ComboBox<Integer> porcentaje;
 
-        private Map<String, Integer> preguntasMap;
-        private Map<String, Integer> preguntasHijasMap;
 
         private DataBaseConnection databaseConnection;
         private String selectedTema;
         int numPreguntas=0;
 
         public AñadirPreguntaController() {
-            preguntasMap = new HashMap<>();
         }
 
         @FXML
@@ -110,10 +109,20 @@
                 while (resultSet.next()) {
                     String questionText = resultSet.getString("ENUNCIADO");
                     int questionId = resultSet.getInt("ID_PREGUNTA");
-                    preguntasMap.put(questionText, questionId);
-                    questions.add(questionText);
+                    sharedData.setPreguntasMap(questionText,questionId);
+                    String PREGUNTA_HIJA = "{ ? = call es_pregunta_hija(?) }";
+                    CallableStatement callableStatement1 = connection.prepareCall(PREGUNTA_HIJA);
+                    callableStatement1.registerOutParameter(1,Types.VARCHAR);
+                    callableStatement1.setInt(2,questionId);
+                    callableStatement1.execute();
+                    if(callableStatement1.getString(1).equals("FALSE") ){
+                        questions.add(questionText);
+                        questionListView.setItems(questions);
+                    }
 
                 }
+
+
                 resultSet.close();
                 callableStatement.close();
             }
@@ -124,7 +133,19 @@
         private void onAddButtonClicked(ActionEvent event) {
             String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
             Integer selectedOption = porcentaje.getSelectionModel().getSelectedItem();
-            String selectedQuestionType = null;
+            String selectedQuestionType;
+            try {
+                String QUESTION_TYPE = "{ ? = call get_tipo(?) }";
+                Connection connection=databaseConnection.getConnection();
+                CallableStatement callableStatement = connection.prepareCall(QUESTION_TYPE);
+                callableStatement.registerOutParameter(1, Types.VARCHAR);
+                callableStatement.setInt(2,sharedData.getPreguntasMap(selectedQuestion));
+                callableStatement.execute();
+                selectedQuestionType = callableStatement.getString(1);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
             if (selectedOption == null){
                 showAlert.error("Debe seleccionar un porcentaje para la pregunta");
             }
@@ -132,36 +153,55 @@
                 showAlert.error("Ya agregó todas las preguntas del examen");
             }
             if (selectedQuestion != null && selectedOption != null && numPreguntas < sharedData.getNumPreguntas()) {
-                if(selectedQuestionType != "Pregunta padre") {
+                System.out.println(selectedQuestionType);
+                if(!selectedQuestionType.equals("Pregunta padre")) {
                     // Añadir la pregunta seleccionada a la lista de preguntas del examen
                     listaExamenActual.getItems().add(selectedQuestion);
                     numPreguntas += 1;
                     questionListView.getItems().remove(selectedQuestion);
 
                     // Obtener el ID de la pregunta seleccionada
-                    int questionId = preguntasMap.get(selectedQuestion);
+                    int questionId = sharedData.getPreguntasMap(selectedQuestion);
 
                     // Lógica para añadir la pregunta al examen en la base de datos
                     if (examenIdExamen != 0) {
                         addQuestionToExam(questionId, selectedOption);
                     }
+                    listaSubPreguntas.getItems().clear();
                 }
                 else{
-                    /*
-                    * Conectar a la pantalla de asignar porcentajes
-                    * */
+                    try {
+                        openNewWindow();
+                        listaExamenActual.getItems().add(selectedQuestion);
+                        numPreguntas += 1;
+                        questionListView.getItems().remove(selectedQuestion);
+                        listaSubPreguntas.getItems().clear();
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
+        }
+
+        private void openNewWindow() throws Exception {
+            Stage newStage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/asignar_porcentaje_subpreguntas.fxml"));
+            AnchorPane vbox = loader.load();
+            Scene scene = new Scene(vbox);
+            newStage.setScene(scene);
+
+            newStage.show();
         }
 
         @FXML
         private void onListViewClicked(){
             try {
-                preguntasHijasMap = new HashMap<>();
                 String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
                 if (selectedQuestion != null) {
                     // Obtener el ID de la pregunta seleccionada
-                    int questionId = preguntasMap.get(selectedQuestion);
+                    int questionId = sharedData.getPreguntasMap(selectedQuestion);
                     System.out.println(questionId);
                     String PREGUNTAS_HIJAS = "{ ? = call get_preguntas_hijas(?) }";
                     Connection connection=databaseConnection.getConnection();
@@ -178,15 +218,10 @@
                             int idPregunta = rs.getInt("ID_PREGUNTA");
                             String enunciado = rs.getString("ENUNCIADO");
                             System.out.println(enunciado);
-                            preguntasHijasMap.put(enunciado,idPregunta);
+                            sharedData.setPreguntasHijasMap(enunciado,idPregunta);
                         }
                     }
-                    /*
-                    * Caja negra
-                    * a partir de la id, devolver en un segundo hashmap las claves y descripciones de las preguntas
-                    * [preguntasHijasMap]
-                    * */
-                    preguntasHijasMap.forEach((key, value) -> {
+                    sharedData.getPreguntasHijasMapa().forEach((key, value) -> {
                         listaSubPreguntas.getItems().add(key);
                     });
                 }
@@ -212,18 +247,64 @@
 
         @FXML
         private void onFinalizar(ActionEvent event){
+            ArrayList<Integer> examenes_alumno = new ArrayList<>();
             try {
                 Connection connection = databaseConnection.getConnection();
                 String CALL_FINALIZAR_EXAMEN = "{ call finalizar_examen (?) }";
                 CallableStatement callableStatement = connection.prepareCall(CALL_FINALIZAR_EXAMEN);
                 callableStatement.setInt(1,examenIdExamen);
-                String CALL_PREGUNTAS_ALUMNO = "{ call generar_examenes_alumno (?,?) }";
-                CallableStatement callableStatement1 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
-                callableStatement1.setInt(1,sharedData.getIdCurso());
-                callableStatement.setInt(2,examenIdExamen);
-
+                System.out.println(examenIdExamen);
+                System.out.println(sharedData.getIdCurso());
+                callableStatement.execute();
+                callableStatement.close();
+                connection.close();
             } catch (SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
+            }
+            CallableStatement callableStatement1 = null;
+            try {
+                String CALL_PREGUNTAS_ALUMNO = "{ call generar_examenes_alumno_proc (?,?,?) }";
+                Connection connection = databaseConnection.getConnection();
+                callableStatement1 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                callableStatement1.setString(1,sharedData.getDocenteId());
+                callableStatement1.setInt(2,sharedData.getIdCurso());
+                callableStatement1.setInt(3,examenIdExamen);
+                callableStatement1.execute();
+                System.out.println("funciona");
+                callableStatement1.close();
+                connection.close();
+                // Obtiene el cursor devuelto por la función
+//                try (ResultSet rs = (ResultSet) callableStatement1.getObject(1)) {
+//                    // Procesa los resultados del cursor
+//                    while (rs.next()) {
+//                        int idEaxemen = rs.getInt("id_examen_alumno");
+//                        examenes_alumno.add(idEaxemen);
+//                    }
+//
+//                }
+//                callableStatement1.close();
+//                connection.close();
+//            } catch (SQLException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//            try {
+//                String CALL_INSERTAR_PREGUNTAS = "{ call add_preguntas_examen_alumno (?) }";
+//                Connection connection = databaseConnection.getConnection();
+//                CallableStatement callableStatement2 = connection.prepareCall(CALL_INSERTAR_PREGUNTAS);
+//
+//                for (int idExamenAlumno : examenes_alumno) {
+//                    callableStatement2.setInt(1, idExamenAlumno);
+//                    callableStatement2.execute();
+//                }
+//
+//                // Cerrar los recursos
+//
+//
+//                callableStatement2.close();
+//                connection.close();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
             }
         }
 

@@ -1,5 +1,7 @@
     package com.uniquindio.alena.controllers;
 
+    import com.dlsc.formsfx.model.validators.IntegerRangeValidator;
+
     import java.util.HashMap;
     import java.util.Map;
 
@@ -14,6 +16,9 @@
         private final Map<String, String> seleccion;
         private Map<String, Integer> temasMapExam = new HashMap<>();
         private Map<String, Integer> categoriasMapExam = new HashMap<>();
+        private Map<String,Integer> preguntasMap= new HashMap<>();
+        private Map<String,Integer> preguntasHijasMap = new HashMap<>();
+        private Map<String,Integer> preguntasHijasMapa = new HashMap<>();
         private String docenteId = "1202589320";
         private int idCurso= 1;
         private String alumnoId;
@@ -139,5 +144,33 @@
 
         public void setIdCurso(int idCurso) {
             this.idCurso = idCurso;
+        }
+
+        public Integer getPreguntasMap(String key) {
+            return preguntasMap.get(key);
+        }
+
+        public void setPreguntasMap(String key, Integer value) {
+            this.preguntasMap.put(key,value);
+        }
+
+        public void setAlumnoId(String alumnoId) {
+            this.alumnoId = alumnoId;
+        }
+
+        public Map<String, Integer> getPreguntasHijasMap() {
+            return preguntasHijasMap;
+        }
+
+        public void setPreguntasHijasMap(String key, Integer value) {
+            this.preguntasHijasMap.put(key,value);
+        }
+
+        public Map<String, Integer> getPreguntasHijasMapa() {
+            return preguntasHijasMapa;
+        }
+
+        public void setPreguntasHijasMapa(Map<String, Integer> preguntasHijasMapa) {
+            this.preguntasHijasMapa = preguntasHijasMapa;
         }
     }
