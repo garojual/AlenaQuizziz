@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="insert examen_alumno">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaPadre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearSubPreguntas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_padre.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_sub_preguntas.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AsignarPorcentajeSubpreguntas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AsignarPorcentajeSubpreguntas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/asignar_porcentaje_subpreguntas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/asignar_porcentaje_subpreguntas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_completar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_completar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_ordenar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_ordenar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716699483734</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="insert examen_alumno">
+      <option name="closed" value="true" />
+      <created>1716754189455</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716754189455</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

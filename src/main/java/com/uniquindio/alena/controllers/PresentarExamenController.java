@@ -73,7 +73,8 @@ public class PresentarExamenController implements Initializable {
 //        crearMetodoVerdaderoFalso("3", "Enunciado3");
     }
 
-    private void crearPreguntaUnicaRespuesta(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
+    private void crearPreguntaUnicaRespuesta(String numPreg, String enunciado, String res1, String res2, String res3,
+                                             String res4){
         VBox vBoxEnunciado = new VBox();
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
@@ -120,7 +121,8 @@ public class PresentarExamenController implements Initializable {
         vBox.getChildren().add(respuesta4);
     }
 
-    private  void crearPreguntaMultipleRespuesta(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
+    private  void crearPreguntaMultipleRespuesta(String numPreg, String enunciado, String res1, String res2,
+                                                 String res3, String res4){
         VBox vBoxEnunciado = new VBox();
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
@@ -179,6 +181,14 @@ public class PresentarExamenController implements Initializable {
 
         hBox.getChildren().add(verdadero);
         hBox.getChildren().add(falso);
+    }
+
+    private void crearPreguntaOrdenar(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
+        VBox vBoxEnunciado = new VBox();
+        vBoxEnunciado.setAlignment(Pos.CENTER);
+        vBoxEnunciado.setPrefWidth(600);
+
+        Label labelUnicaRespuesta = new Label(numPreg + ". " + enunciado);
     }
 }
 

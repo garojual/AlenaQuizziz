@@ -40,7 +40,8 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
 
         Button button = new Button("Aceptar");
         button.setOnAction(e -> {
-            asignarPorcentajesPreguntas();
+            //asignarPorcentajesPreguntas();
+            System.out.println("SSSS");
         });
 
         vBox.getChildren().add(button);
@@ -67,6 +68,7 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
         vBox.getChildren().add(comboBox);
 
         rootVBox.getChildren().add(vBox);
+
 
     }
 

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="324.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaPadre">
+   <children>
+      <VBox alignment="CENTER" prefWidth="600.0">
+         <children>
+            <Label text="Nueva Pregunta">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
+      </VBox>
+      <HBox layoutY="42.0" prefHeight="132.0" prefWidth="600.0">
+         <children>
+            <Label text="Enunciado">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextArea prefHeight="102.0" prefWidth="452.0" />
+         </children>
+         <padding>
+            <Insets left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="174.0" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Label text="Numero de preguntas">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
+            <ComboBox fx:id="numPreguntas" prefWidth="150.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="274.0" prefHeight="74.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Cancelar">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Aceptar">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
