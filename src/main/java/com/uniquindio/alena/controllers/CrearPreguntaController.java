@@ -51,7 +51,8 @@ public class CrearPreguntaController implements Initializable {
                     "Multiple respuesta",
                     "Emparejar",
                     "Ordenar",
-                    "Completar"
+                    "Completar",
+                    "Pregunta padre"
             );
             tipoPregunta.setItems(tiposPregunta);
 
@@ -125,7 +126,7 @@ public class CrearPreguntaController implements Initializable {
                     }
                 case "Emparejar":
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_asociar.fxml"));
                         Parent root = loader.load();
 
                         // Mostrar la nueva pantalla
@@ -137,7 +138,7 @@ public class CrearPreguntaController implements Initializable {
                     }
                 case "Ordenar":
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_ordenar.fxml"));
                         Parent root = loader.load();
 
                         // Mostrar la nueva pantalla
@@ -149,7 +150,19 @@ public class CrearPreguntaController implements Initializable {
                     }
                 case "Completar":
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_v_f.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_completar.fxml"));
+                        Parent root = loader.load();
+
+                        // Mostrar la nueva pantalla
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "Pregunta padre":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_pregunta_padre.fxml"));
                         Parent root = loader.load();
 
                         // Mostrar la nueva pantalla

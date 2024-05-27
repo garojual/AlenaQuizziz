@@ -9,13 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.*;
 
 public class AsignarPorcentajeSubpreguntas implements Initializable {
 
-    private Map<String, Integer> subPreguntasMap;
+    private SharedData sharedData = SharedData.getInstance();
     private Map<Integer, Integer> pesoSubPreguntas;
     private int[] pesosComboBoxSubpreguntas;
 
@@ -24,14 +25,12 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*Obtener el hash map de las subpreguntas
-         *
-         * */
+
         pesoSubPreguntas = new HashMap<>();
-        pesosComboBoxSubpreguntas = new int[4];
+        pesosComboBoxSubpreguntas = new int[sharedData.getPreguntasHijasMapa().size()];
 
 
-        for (int i=0; i <  4 /*subPreguntasMap.size()*/; i++){
+        for (int i=0; i <  sharedData.getPreguntasHijasMapa().size(); i++){
             crearMenuPorcentajes(i);
         }
 
@@ -40,8 +39,10 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
 
         Button button = new Button("Aceptar");
         button.setOnAction(e -> {
-            //asignarPorcentajesPreguntas();
-            System.out.println("SSSS");
+            asignarPorcentajesPreguntas();
+            Stage stage= (Stage) rootVBox.getScene().getWindow();
+            stage.close();
+
         });
 
         vBox.getChildren().add(button);
@@ -83,7 +84,7 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
 
     private void asignarPorcentajesPreguntas() {
         int i = 0;
-        for(Integer value : subPreguntasMap.values()){
+        for(Integer value : sharedData.getPreguntasHijasMapa().values()){
             pesoSubPreguntas.put(value, pesosComboBoxSubpreguntas[i]);
             i++;
         }

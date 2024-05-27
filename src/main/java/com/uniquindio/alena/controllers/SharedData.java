@@ -19,12 +19,12 @@
         private Map<String, Integer> categoriasMapExam = new HashMap<>();
         private Map<String,Integer> preguntasMap= new HashMap<>();
         private Map<String,Integer> preguntasHijasMap = new HashMap<>();
-        private Map<String,Integer> preguntasHijasMapa = new HashMap<>();
         private String docenteId = "1202589320";
         private int idCurso= 1;
         private String alumnoId;
         private int idExamen;
         private int numSubPreguntas;
+        private boolean isPadre = false;
 
 
         private SharedData() {
@@ -168,10 +168,18 @@
         }
 
         public Map<String, Integer> getPreguntasHijasMapa() {
-            return preguntasHijasMapa;
+            return preguntasHijasMap;
         }
 
         public void setPreguntasHijasMapa(Map<String, Integer> preguntasHijasMapa) {
-            this.preguntasHijasMapa = preguntasHijasMapa;
+            this.preguntasHijasMap = preguntasHijasMapa;
+        }
+
+        public boolean isPadre() {
+            return isPadre;
+        }
+
+        public void setPadre(boolean padre) {
+            isPadre = padre;
         }
     }

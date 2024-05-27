@@ -264,9 +264,9 @@
             }
             CallableStatement callableStatement1 = null;
             try {
-                String CALL_PREGUNTAS_ALUMNO = "{ call generar_examenes_alumno_proc (?,?,?) }";
+                String CALL_EXAMEN_ALUMNO = "{ call generar_examenes_alumno_proc (?,?,?) }";
                 Connection connection = databaseConnection.getConnection();
-                callableStatement1 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                callableStatement1 = connection.prepareCall(CALL_EXAMEN_ALUMNO);
                 callableStatement1.setString(1,sharedData.getDocenteId());
                 callableStatement1.setInt(2,sharedData.getIdCurso());
                 callableStatement1.setInt(3,examenIdExamen);
@@ -274,37 +274,21 @@
                 System.out.println("funciona");
                 callableStatement1.close();
                 connection.close();
-                // Obtiene el cursor devuelto por la función
-//                try (ResultSet rs = (ResultSet) callableStatement1.getObject(1)) {
-//                    // Procesa los resultados del cursor
-//                    while (rs.next()) {
-//                        int idEaxemen = rs.getInt("id_examen_alumno");
-//                        examenes_alumno.add(idEaxemen);
-//                    }
-//
-//                }
-//                callableStatement1.close();
-//                connection.close();
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//            try {
-//                String CALL_INSERTAR_PREGUNTAS = "{ call add_preguntas_examen_alumno (?) }";
-//                Connection connection = databaseConnection.getConnection();
-//                CallableStatement callableStatement2 = connection.prepareCall(CALL_INSERTAR_PREGUNTAS);
-//
-//                for (int idExamenAlumno : examenes_alumno) {
-//                    callableStatement2.setInt(1, idExamenAlumno);
-//                    callableStatement2.execute();
-//                }
-//
-//                // Cerrar los recursos
-//
-//
-//                callableStatement2.close();
-//                connection.close();
+
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
+            }
+
+            try {
+                String CALL_PREGUNTAS_ALUMNO = "{ call procesar_examen_alumno (?) }";
+                Connection connection = databaseConnection.getConnection();
+                CallableStatement callableStatement2 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                callableStatement2.setInt(1, sharedData.getIdExamen());
+                callableStatement2.execute();
+                System.out.println("funciona x2");
+                callableStatement2.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
 
