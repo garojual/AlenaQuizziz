@@ -5,6 +5,7 @@
     import java.util.HashMap;
     import java.util.Map;
 
+    //Shared data
     public class SharedData {
         private static SharedData instance;
         private String selectedTemaPregunta;
