@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="insert examen_alumno">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaPadre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearSubPreguntas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_padre.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_sub_preguntas.fxml" afterDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Perhaps this is hell">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AsignarPorcentajeSubpreguntas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AsignarPorcentajeSubpreguntas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaPadre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearPreguntaPadre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_ordenar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_ordenar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/SharedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/SharedData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_padre.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_padre.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uniquindio/alena/crear_pregunta_tema.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716754189455</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Perhaps this is hell">
+      <option name="closed" value="true" />
+      <created>1716779003183</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716779003183</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +284,7 @@
     <MESSAGE value="start singleton pattern implementation" />
     <MESSAGE value="insert exams to the database" />
     <MESSAGE value="insert examen_alumno" />
-    <option name="LAST_COMMIT_MESSAGE" value="insert examen_alumno" />
+    <MESSAGE value="Perhaps this is hell" />
+    <option name="LAST_COMMIT_MESSAGE" value="Perhaps this is hell" />
   </component>
 </project>

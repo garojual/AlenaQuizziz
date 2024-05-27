@@ -18,6 +18,7 @@
         private int idCurso= 1;
         private String alumnoId;
         private int idExamen;
+        private int numSubPreguntas;
 
 
         private SharedData() {
@@ -29,6 +30,14 @@
                 instance = new SharedData();
             }
             return instance;
+        }
+
+        public int getNumSubPreguntas() {
+            return numSubPreguntas;
+        }
+
+        public void setNumSubPreguntas(int numSubPreguntas) {
+            this.numSubPreguntas = numSubPreguntas;
         }
 
         public String getSelectedTemaPregunta() {

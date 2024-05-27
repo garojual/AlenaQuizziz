@@ -11,11 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class CrearPreguntaController implements Initializable {
@@ -28,6 +31,12 @@ public class CrearPreguntaController implements Initializable {
 
     @FXML
     private ComboBox<String> temaPregunta;
+
+    @FXML
+    private RadioButton rdbttnPrivada;
+
+    @FXML
+    private RadioButton rdbttnPublica;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,6 +54,10 @@ public class CrearPreguntaController implements Initializable {
                     "Completar"
             );
             tipoPregunta.setItems(tiposPregunta);
+
+            ToggleGroup ppToogleGroup = new ToggleGroup();
+            rdbttnPublica.setToggleGroup(ppToogleGroup);
+            rdbttnPrivada.setToggleGroup(ppToogleGroup);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

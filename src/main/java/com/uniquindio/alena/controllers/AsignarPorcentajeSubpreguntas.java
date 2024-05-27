@@ -88,6 +88,8 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
             i++;
         }
         System.out.println(Arrays.toString(pesosComboBoxSubpreguntas));
+
+
     }
 
     public void setDatabaseConnection(DataBaseConnection connection) {

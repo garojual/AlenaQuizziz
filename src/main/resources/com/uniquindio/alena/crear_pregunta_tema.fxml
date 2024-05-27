@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="43.0" prefWidth="600.0">
          <children>
@@ -51,12 +51,12 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="171.0" prefHeight="57.0" prefWidth="600.0">
          <children>
-            <RadioButton mnemonicParsing="false" text="Privada">
+            <RadioButton fx:id="rdbttnPrivada" mnemonicParsing="false" text="Privada">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Pública">
+            <RadioButton fx:id="rdbttnPublica" mnemonicParsing="false" text="Pública">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin>

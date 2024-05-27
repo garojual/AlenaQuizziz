@@ -29,7 +29,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <TextArea prefHeight="102.0" prefWidth="452.0" />
+            <TextArea fx:id="enunciadoTextArea" prefHeight="102.0" prefWidth="452.0" />
          </children>
          <padding>
             <Insets left="30.0" right="30.0" top="30.0" />
