@@ -3,14 +3,18 @@ package com.uniquindio.alena.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +26,9 @@ public class CrearSubPreguntas implements Initializable {
 
     int numSubPreguntas;
     int numPreguntasCreadas;
+    ShowAlert showAlert = new ShowAlert();
+    SharedData sharedData = SharedData.getInstance();
+    DataBaseConnection dataBaseConnection;
 
 
     @Override
@@ -31,7 +38,7 @@ public class CrearSubPreguntas implements Initializable {
         * Obtener el numero de preguntas de la pantalla anterior y asignarlo a numSubPreguntas
         * */
 
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i <sharedData.getNumSubPreguntas(); i++){
             crearMenuTipoPreguntas(i);
         }
 
@@ -45,6 +52,9 @@ public class CrearSubPreguntas implements Initializable {
     private void addActionButtonFinalizar(Button button){
         button.setOnAction(e ->{
             //Guardar preguntas y cerrar escena cueste lo que cueste
+            Stage stage= (Stage) rootVBox.getScene().getWindow();
+            stage.close();
+            sharedData.setPadre(null);
         });
     }
 
@@ -98,7 +108,7 @@ public class CrearSubPreguntas implements Initializable {
 
                                     break;
                                 } else {
-                                    //levantar error, se debe seleccionar un tipo de pregunta
+                                    showAlert.error("El tipo de pregunta no puede ser nulo");
                                     System.out.println("El tipo de pregunta es nulo");
                                     break;
                                 }
@@ -110,25 +120,60 @@ public class CrearSubPreguntas implements Initializable {
 
             switch (seleccionTipoPregunta){
                 case "Única respuesta":
-                    //Llamar a la pantalla de creacion de unica respuesta sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 case "Múltiple respuesta":
-                    //Llamar a la pantalla de creacion de mutliple respuesta sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_mult_resp.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 case "Ordenar":
-                    //Llamar a la pantalla de creacion de ordenar sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_ordenar.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 case "Emparejar":
-                    //Llamar a la pantalla de creacion de Emparejar sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_asociar.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 case "Completar":
-                    //Llamar a la pantalla de creacion de Completar sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_completar.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 case "Verdadero/Falso":
-                    //Llamar a la pantalla de creacion de Verdadero/Falso sin cerrar esta
+                    try {
+                        openNewWindow("/com/uniquindio/alena/crear_pregunta_v_f.fxml");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
             }
 
         });
+
+    }
+    private void openNewWindow(String ruta) throws Exception {
+        Stage newStage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(ruta));
+        AnchorPane vbox = loader.load();
+        Scene scene = new Scene(vbox);
+        newStage.setScene(scene);
+
+        newStage.show();
     }
 
     public void setDatabaseConnection(DataBaseConnection connection) {

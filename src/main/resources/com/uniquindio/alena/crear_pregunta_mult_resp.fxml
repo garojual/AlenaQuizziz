@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="461.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaMultipleRespuesta">
+<AnchorPane prefHeight="461.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaMultipleRespuesta">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="600.0">
          <children>
@@ -39,7 +32,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <Label text="Tema:">
+            <Label fx:id="temaLabel" text="Tema:">
                <font>
                   <Font size="13.0" />
                </font>
@@ -59,7 +52,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <TextArea prefHeight="200.0" prefWidth="450.0" />
+            <TextArea fx:id="enunciado" prefHeight="200.0" prefWidth="450.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="181.0" prefHeight="50.0" prefWidth="600.0">
@@ -75,12 +68,12 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="292.0">
+            <TextField fx:id="respuesta1" prefWidth="292.0">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox mnemonicParsing="false" text="Correcta" />
+            <CheckBox fx:id="CheckBox1" mnemonicParsing="false" text="Correcta" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="230.0" prefHeight="50.0" prefWidth="600.0">
@@ -96,12 +89,12 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="292.0">
+            <TextField fx:id="respuesta2" prefWidth="292.0">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox mnemonicParsing="false" text="Correcta" />
+            <CheckBox fx:id="CheckBox2" mnemonicParsing="false" text="Correcta" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="280.0" prefHeight="50.0" prefWidth="600.0">
@@ -117,12 +110,12 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="292.0">
+            <TextField fx:id="respuesta3" prefWidth="292.0">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox mnemonicParsing="false" text="Correcta" />
+            <CheckBox fx:id="CheckBox3" mnemonicParsing="false" text="Correcta" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="330.0" prefHeight="50.0" prefWidth="600.0">
@@ -138,22 +131,22 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="292.0">
+            <TextField fx:id="respuesta4" prefWidth="292.0">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>
             </TextField>
-            <CheckBox mnemonicParsing="false" text="Correcta" />
+            <CheckBox fx:id="CheckBox4" mnemonicParsing="false" text="Correcta" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutY="380.0" prefHeight="61.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Cancelar">
+            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Crear Pregunta">
+            <Button mnemonicParsing="false" onAction="#crear" text="Crear Pregunta">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>

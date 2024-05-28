@@ -12,13 +12,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.*;
 
 public class AsignarPorcentajeSubpreguntas implements Initializable {
 
     private SharedData sharedData = SharedData.getInstance();
-    private Map<Integer, Integer> pesoSubPreguntas;
+
     private int[] pesosComboBoxSubpreguntas;
+    private DataBaseConnection dataBaseConnection = new DataBaseConnection();
+
 
     @FXML
     private VBox rootVBox;
@@ -26,7 +31,6 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        pesoSubPreguntas = new HashMap<>();
         pesosComboBoxSubpreguntas = new int[sharedData.getPreguntasHijasMapa().size()];
 
 
@@ -40,6 +44,11 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
         Button button = new Button("Aceptar");
         button.setOnAction(e -> {
             asignarPorcentajesPreguntas();
+            int i = 0;
+            for(Integer value : sharedData.getPreguntasHijasMapa().values()){
+                addQuestionToExam(value,sharedData.getPesoSubPreguntas(value),dataBaseConnection);
+                i++;
+            }
             Stage stage= (Stage) rootVBox.getScene().getWindow();
             stage.close();
 
@@ -85,12 +94,34 @@ public class AsignarPorcentajeSubpreguntas implements Initializable {
     private void asignarPorcentajesPreguntas() {
         int i = 0;
         for(Integer value : sharedData.getPreguntasHijasMapa().values()){
-            pesoSubPreguntas.put(value, pesosComboBoxSubpreguntas[i]);
+            sharedData.setPesoSubPreguntas(value, pesosComboBoxSubpreguntas[i]);
             i++;
         }
         System.out.println(Arrays.toString(pesosComboBoxSubpreguntas));
 
 
+    }
+
+    private void addQuestionToExam(int preguntaId, int opcion, DataBaseConnection databaseConnection) {
+        try {
+
+            Connection connection = databaseConnection.getConnection();
+            String CALL_ADD_QUESTION = "{ call add_pregunta_examen(?, ?, ?) }";
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement callableStatement = connection.prepareCall(CALL_ADD_QUESTION);
+            callableStatement.setInt(1, sharedData.getIdExamen());
+            callableStatement.setInt(2, preguntaId);
+            callableStatement.setInt(3,opcion);
+
+            // Ejecutar la llamada al procedimiento almacenado
+            callableStatement.execute();
+
+            // Cerrar la conexión después de usarla
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar la excepción (mostrar un mensaje de error, registrarla, etc.)
+        }
     }
 
     public void setDatabaseConnection(DataBaseConnection connection) {

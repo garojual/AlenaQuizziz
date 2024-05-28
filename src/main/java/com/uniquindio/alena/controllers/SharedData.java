@@ -1,7 +1,5 @@
     package com.uniquindio.alena.controllers;
 
-    import com.dlsc.formsfx.model.validators.IntegerRangeValidator;
-
     import java.util.HashMap;
     import java.util.Map;
 
@@ -14,7 +12,7 @@
         private String selectedCategoria;
         private int numPreguntas;
         private int pregPorAlumno;
-        private final Map<String, String> seleccion;
+        private final Map<String, Integer> seleccion;
         private Map<String, Integer> temasMapExam = new HashMap<>();
         private Map<String, Integer> categoriasMapExam = new HashMap<>();
         private Map<String,Integer> preguntasMap= new HashMap<>();
@@ -24,8 +22,9 @@
         private String alumnoId;
         private int idExamen;
         private int numSubPreguntas;
-        private boolean isPadre = false;
+        private Integer isPadre = null ;
         private int seleccionURCorrecta;
+        private Map<Integer, Integer> pesoSubPreguntas= new HashMap<>();
 
 
         private SharedData() {
@@ -73,15 +72,15 @@
             this.selectedTipoPregunta = selectedTipoPregunta;
         }
 
-        public Map<String, String> getSeleccion() {
+        public Map<String, Integer> getSeleccion() {
             return seleccion;
         }
 
-        public void putSeleccion(String key, String value) {
+        public void putSeleccion(String key, Integer value) {
             seleccion.put(key, value);
         }
 
-        public String getSeleccion(String key) {
+        public Integer getSeleccion(String key) {
             return seleccion.get(key);
         }
 
@@ -186,15 +185,23 @@
             this.preguntasHijasMap = preguntasHijasMapa;
         }
 
-        public boolean isPadre() {
+        public Integer isPadre() {
             return isPadre;
         }
 
-        public void setPadre(boolean padre) {
+        public void setPadre(Integer padre) {
             isPadre = padre;
         }
 
         public Map<String, Integer> getPreguntasMapa(){
             return preguntasMap;
+        }
+
+        public Integer getPesoSubPreguntas(Integer value) {
+            return pesoSubPreguntas.get(value);
+        }
+
+        public void setPesoSubPreguntas(Integer key, Integer value) {
+            this.pesoSubPreguntas.put(key, value);
         }
     }

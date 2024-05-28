@@ -171,6 +171,7 @@
                 }
                 else{
                     try {
+                        int i = 0;
                         openNewWindow();
                         listaExamenActual.getItems().add(selectedQuestion);
                         numPreguntas += 1;

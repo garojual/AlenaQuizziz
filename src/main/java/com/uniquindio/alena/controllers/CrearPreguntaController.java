@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class CrearPreguntaController implements Initializable {
     private DataBaseConnection databaseConnection;
     private ShowAlert showAlert = new ShowAlert();
-    private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA FROM tema";
+    private static final String SQL_TEMAS = "SELECT NOMBRE_TEMA, ID_TEMA FROM tema";
 
     @FXML
     private ComboBox<String> tipoPregunta;
@@ -86,7 +86,9 @@ public class CrearPreguntaController implements Initializable {
         ResultSet resultSet = statement.executeQuery(SQL_TEMAS);
         while (resultSet.next()) {
             String tema = resultSet.getString("nombre_tema");
+            int id_pregunta = resultSet.getInt("ID_TEMA");
             temas.add(tema);
+            sharedData.putSeleccion(tema,id_pregunta);
         }
         return temas;
     }
@@ -100,8 +102,8 @@ public class CrearPreguntaController implements Initializable {
             SharedData sharedData = SharedData.getInstance();
             sharedData.setSelectedTemaPregunta(selectedTema);
             sharedData.setSelectedTipoPregunta(selectedTipoPregunta);
-            sharedData.putSeleccion("tema", selectedTema);
-            sharedData.putSeleccion("tipoPregunta", selectedTipoPregunta);
+            sharedData.putSeleccion(selectedTipoPregunta, sharedData.getSeleccion(selectedTema));
+
 
             switch (selectedTipoPregunta){
                 case "Unica respuesta":
@@ -110,9 +112,10 @@ public class CrearPreguntaController implements Initializable {
                     Parent root = loader.load();
 
                     // Mostrar la nueva pantalla
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Stage stage = (Stage) tipoPregunta.getScene().getWindow();
                     stage.setScene(new Scene(root));
                     stage.show();
+                    break;
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -125,6 +128,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -137,6 +141,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -149,6 +154,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -161,6 +167,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -173,6 +180,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -185,6 +193,7 @@ public class CrearPreguntaController implements Initializable {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        break;
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
