@@ -76,6 +76,7 @@ public class PresentarExamenController implements Initializable {
 
         //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
         SharedData sharedData = SharedData.getInstance();
+        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
 
 
     }

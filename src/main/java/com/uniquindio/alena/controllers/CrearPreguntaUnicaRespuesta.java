@@ -44,6 +44,8 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
 
     private ToggleGroup toggleGroup;
 
+    String seleccionCorrecta;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,7 +69,12 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
         String tipo= "Unica respuesta";
         String estado= "Finalizada";
 
+    }
 
+    private void addActionRadioButton(RadioButton radioButton){
+        radioButton.setOnAction(e ->{
+            seleccionCorrecta = radioButton.getText().toString();
+        });
     }
 
     @FXML
