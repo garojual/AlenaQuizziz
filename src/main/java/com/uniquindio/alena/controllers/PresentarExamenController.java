@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -60,20 +61,71 @@ public class PresentarExamenController implements Initializable {
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaCompletar("6", "Enunciado______");
+        crearPreguntaUnicaRespuesta("1", "Harry Potter y la piedra filosofal fue publicado por primera vez por Bloomsbury en el Reino Unido en", "1995", "1996", "1997", "1998");
+        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaCompletar("6", "Enunciado______");
 
+//        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
+//        SharedData sharedData = SharedData.getInstance();
+//        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
+//
+//        //Obtener los tipos de la pregunta
+//        Map<Integer, String> tipos = new HashMap<>();
+//
+//        for(String key: preguntas.keySet()){
+//            int idPregunta = preguntas.get(key);
+//            String tipo = tipos.get(idPregunta);
+//
+//            switch (tipo){
+//
+//                case "Única respuesta":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaUnicaRespuesta("", "Enunciado 1", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Múltiple respuesta":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaMultipleRespuesta("","Enunciado 2", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Ordenar":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaOrdenar("", "Enunciado 3", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Emparejar":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaAsociar("", "Enunciado 4", "Enum1", "Enum2",
+//                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Completar":
+//                    //Obtener  el enunciado hasta el momento iran quemados
+//
+//                    crearPreguntaCompletar("", "Enunciado 5");
+//
+//                case "Verdadero/Falso":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
+//
+//                case "Pregunta Padre":
+//                    //Obtener las subpreguntas y los tipos
+//
+//                    crearPreguntaPadre("", "Enunciado 7", new HashMap<>(), new ArrayList<>());
+//            }
+//
+//        }
         //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
         SharedData sharedData = SharedData.getInstance();
         Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
@@ -83,23 +135,32 @@ public class PresentarExamenController implements Initializable {
 
     private void crearPreguntaUnicaRespuesta(String numPreg, String enunciado, String res1, String res2, String res3,
                                              String res4){
-        VBox vBoxEnunciado = new VBox();
+        VBox vBoxEnunciado = new VBox(30);
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
 
+
         Label labelUnicaRespuesta = new Label(numPreg + ". " + enunciado);
+        labelUnicaRespuesta.setPrefWidth(500);
+        labelUnicaRespuesta.setWrapText(true);
         setEstiloLabel(labelUnicaRespuesta);
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        VBox vBoxRespuestas = new VBox();
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+
+        VBox vBoxRespuestas = new VBox(10);
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
         setRespuestasUR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
+
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,60));
+
+
     }
 
     private void setEstiloLabel(Node node){
-        node.setStyle("-fx-font: 13 arial;");
+        node.setStyle("-fx-font: 15 roboto;");
     }
 
     private void setCheckboxClickFunct(CheckBox node){
@@ -123,10 +184,16 @@ public class PresentarExamenController implements Initializable {
         respuesta3.setToggleGroup(grupoRespuestas);
         respuesta4.setToggleGroup(grupoRespuestas);
 
+        respuesta1.setStyle("-fx-font: 13 roboto;");
+        respuesta2.setStyle("-fx-font: 13 roboto;");
+        respuesta3.setStyle("-fx-font: 13 roboto;");
+        respuesta4.setStyle("-fx-font: 13 roboto;");
+
         vBox.getChildren().add(respuesta1);
         vBox.getChildren().add(respuesta2);
         vBox.getChildren().add(respuesta3);
         vBox.getChildren().add(respuesta4);
+
     }
 
     private  void crearPreguntaMultipleRespuesta(String numPreg, String enunciado, String res1, String res2,
@@ -140,10 +207,16 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        VBox vBoxRespuestas = new VBox();
+        VBox vBoxRespuestas = new VBox(10);
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
+
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,60));
+
         setRespuestasMR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
+
+
     }
 
     private void setRespuestasMR(VBox vBox, String res1, String res2, String res3, String res4) {
@@ -155,6 +228,11 @@ public class PresentarExamenController implements Initializable {
         setCheckboxClickFunct(respuesta3);
         CheckBox respuesta4 = new CheckBox(res4);
         setCheckboxClickFunct(respuesta4);
+
+        respuesta1.setStyle("-fx-font: 13 roboto;");
+        respuesta2.setStyle("-fx-font: 13 roboto;");
+        respuesta3.setStyle("-fx-font: 13 roboto;");
+        respuesta4.setStyle("-fx-font: 13 roboto;");
 
         vBox.getChildren().add(respuesta1);
         vBox.getChildren().add(respuesta2);
@@ -172,17 +250,23 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        HBox hBox = new HBox();
+        HBox hBox = new HBox(30);
         hBox.setAlignment(Pos.CENTER);
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+        hBox.setPadding(new Insets(15,0,0,0));
         setVerdaderFalso(hBox, idVerdadero, idFalso);
         rootVBox.getChildren().add(hBox);
+
+
     }
 
     private void setVerdaderFalso(HBox hBox, String idVerdadero, String idFalso) {
         RadioButton verdadero = new RadioButton("Verdadero");
         verdadero.setId(idVerdadero);
+        verdadero.setStyle("-fx-font: 13 roboto;");
         RadioButton falso = new RadioButton("Falso");
         falso.setId(idFalso);
+        falso.setStyle("-fx-font: 13 roboto;");
 
         ToggleGroup VFToogleGroup = new ToggleGroup();
 
@@ -194,8 +278,10 @@ public class PresentarExamenController implements Initializable {
     }
 
     private void crearPreguntaOrdenar(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
-        VBox vBoxEnunciado = new VBox();
+        VBox vBoxEnunciado = new VBox(10);
         vBoxEnunciado.setAlignment(Pos.CENTER);
+
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
 
         Label labelOrdenar = new Label(numPreg + ". " + enunciado);
         labelOrdenar.setId("10");
@@ -209,6 +295,13 @@ public class PresentarExamenController implements Initializable {
         Label label4 = new Label(res4);
         label4.setId("4");
 
+        setEstiloLabel(labelOrdenar);
+
+        label1.setStyle("-fx-font: 13 roboto;");
+        label2.setStyle("-fx-font: 13 roboto;");
+        label3.setStyle("-fx-font: 13 roboto;");
+        label4.setStyle("-fx-font: 13 roboto;");
+
         ObservableList<Integer> opciones = FXCollections.observableArrayList(
                 1,2,3,4
         );
@@ -216,21 +309,25 @@ public class PresentarExamenController implements Initializable {
         comboBox1.setItems(opciones);
         comboBox1.setId("1");
         asignarActionOrdenar(comboBox1);
+        comboBox1.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox2 = new ComboBox<>();
         comboBox2.setItems(opciones);
         comboBox2.setId("2");
         asignarActionOrdenar(comboBox2);
+        comboBox2.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox3 = new ComboBox<>();
         comboBox3.setItems(opciones);
         comboBox3.setId("3");
         asignarActionOrdenar(comboBox3);
+        comboBox3.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox4 = new ComboBox<>();
         comboBox4.setItems(opciones);
         comboBox4.setId("4");
         asignarActionOrdenar(comboBox4);
+        comboBox4.setStyle("-fx-font: 13 roboto;");
 
         vBoxEnunciado.getChildren().add(labelOrdenar);
         vBoxEnunciado.getChildren().add(label1);

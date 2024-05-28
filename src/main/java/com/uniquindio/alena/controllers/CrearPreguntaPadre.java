@@ -36,7 +36,6 @@ public class CrearPreguntaPadre implements Initializable {
 
         crearActionComboBox(numPreguntas);
 
-
     }
 
     private void crearActionComboBox(ComboBox comboBox){
