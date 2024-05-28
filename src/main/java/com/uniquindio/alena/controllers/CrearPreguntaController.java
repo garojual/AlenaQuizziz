@@ -38,6 +38,9 @@ public class CrearPreguntaController implements Initializable {
     @FXML
     private RadioButton rdbttnPublica;
 
+    private SharedData sharedData = SharedData.getInstance();
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -58,10 +61,23 @@ public class CrearPreguntaController implements Initializable {
 
             ToggleGroup ppToogleGroup = new ToggleGroup();
             rdbttnPublica.setToggleGroup(ppToogleGroup);
+            addActionRadioButton(rdbttnPublica);
             rdbttnPrivada.setToggleGroup(ppToogleGroup);
+            addActionRadioButton(rdbttnPrivada);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void addActionRadioButton(RadioButton radioButton){
+        radioButton.setOnAction(e ->{
+            if(radioButton.getText().toString().equals("Privada")){
+                sharedData.setSeleccionURCorrecta(2);
+            }
+            else {
+                sharedData.setSeleccionURCorrecta(1);
+            }
+        });
     }
 
     private ObservableList<String> getTemasFromVista(Connection connection) throws SQLException {

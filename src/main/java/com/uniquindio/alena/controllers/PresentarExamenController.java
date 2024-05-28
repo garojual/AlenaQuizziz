@@ -12,7 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class PresentarExamenController implements Initializable {
@@ -58,19 +60,24 @@ public class PresentarExamenController implements Initializable {
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaCompletar("6", "Enunciado______");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaCompletar("6", "Enunciado______");
+
+        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
+        SharedData sharedData = SharedData.getInstance();
+
+
     }
 
     private void crearPreguntaUnicaRespuesta(String numPreg, String enunciado, String res1, String res2, String res3,
@@ -356,6 +363,58 @@ public class PresentarExamenController implements Initializable {
             String respuesta = textField.getText();
             System.out.println(respuesta);
         });
+    }
+
+    private void crearPreguntaPadre(String numPregunta, String enunciadoPrincipal, HashMap<Integer, String> subPreguntasMapa, ArrayList<String> tiposSubPreguntasaMapa){
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+
+        Label label = new Label(numPregunta + ". " + enunciadoPrincipal);
+        int i = 0;
+
+        vBox.getChildren().add(label);
+        rootVBox.getChildren().add(vBox);
+
+        for(Map.Entry<Integer,String> entry: subPreguntasMapa.entrySet()){
+            String value = entry.getValue();
+            String tipo = tiposSubPreguntasaMapa.get(i);
+
+
+            switch (tipo){
+                case "Única respuesta":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearPreguntaUnicaRespuesta("", "Enunciado 6.1", "Res1", "Res2", "Res3", "Res4");
+
+                case "Múltiple respuesta":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearPreguntaMultipleRespuesta("","Enunciado 6.2", "Res1", "Res2", "Res3", "Res4");
+
+                case "Ordenar":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearPreguntaOrdenar("", "Enunciado 6.3", "Res1", "Res2", "Res3", "Res4");
+
+                case "Emparejar":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearPreguntaAsociar("", "Enunciado 6.4", "Enum1", "Enum2",
+                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+
+                case "Completar":
+                    //Obtener  el enunciado hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearPreguntaCompletar("", "Enunciado 6.5");
+
+                case "Verdadero/Falso":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
+
+                    crearMetodoVerdaderoFalso("", "Enunciado 6.6", "id001", "id002");
+            }
+
+            i++;
+        }
     }
 
 }

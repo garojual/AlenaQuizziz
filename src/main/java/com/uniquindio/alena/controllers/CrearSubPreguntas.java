@@ -42,6 +42,12 @@ public class CrearSubPreguntas implements Initializable {
         rootVBox.getChildren().add(hBox);
     }
 
+    private void addActionButtonFinalizar(Button button){
+        button.setOnAction(e ->{
+            //Guardar preguntas y cerrar escena cueste lo que cueste
+        });
+    }
+
     private void crearMenuTipoPreguntas(int numPregunta){
         ObservableList<String> tiposPregunta = FXCollections.observableArrayList(
                 "Unica respuesta",
@@ -89,6 +95,7 @@ public class CrearSubPreguntas implements Initializable {
                                     seleccionTipoPregunta = (String) (((ComboBox<?>) node.getChildren().get(j)).
                                             getSelectionModel().getSelectedItem());
                                     System.out.println(seleccionTipoPregunta);
+
                                     break;
                                 } else {
                                     //levantar error, se debe seleccionar un tipo de pregunta

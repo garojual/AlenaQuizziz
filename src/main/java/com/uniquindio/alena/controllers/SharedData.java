@@ -25,10 +25,19 @@
         private int idExamen;
         private int numSubPreguntas;
         private boolean isPadre = false;
+        private int seleccionURCorrecta;
 
 
         private SharedData() {
             seleccion = new HashMap<>();
+        }
+
+        public int getSeleccionURCorrecta() {
+            return seleccionURCorrecta;
+        }
+
+        public void setSeleccionURCorrecta(int seleccionURCorrecta) {
+            this.seleccionURCorrecta = seleccionURCorrecta;
         }
 
         public static synchronized SharedData getInstance() {
@@ -41,6 +50,8 @@
         public int getNumSubPreguntas() {
             return numSubPreguntas;
         }
+
+
 
         public void setNumSubPreguntas(int numSubPreguntas) {
             this.numSubPreguntas = numSubPreguntas;
