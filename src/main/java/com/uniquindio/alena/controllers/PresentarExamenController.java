@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -60,41 +61,97 @@ public class PresentarExamenController implements Initializable {
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaCompletar("6", "Enunciado______");
+        crearPreguntaUnicaRespuesta("1", "Harry Potter y la piedra filosofal fue publicado por primera vez por Bloomsbury en el Reino Unido en", "1995", "1996", "1997", "1998");
+        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+        crearPreguntaCompletar("6", "Enunciado______");
 
-        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
-        SharedData sharedData = SharedData.getInstance();
-
+//        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
+//        SharedData sharedData = SharedData.getInstance();
+//        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
+//
+//        //Obtener los tipos de la pregunta
+//        Map<Integer, String> tipos = new HashMap<>();
+//
+//        for(String key: preguntas.keySet()){
+//            int idPregunta = preguntas.get(key);
+//            String tipo = tipos.get(idPregunta);
+//
+//            switch (tipo){
+//
+//                case "Única respuesta":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaUnicaRespuesta("", "Enunciado 1", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Múltiple respuesta":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaMultipleRespuesta("","Enunciado 2", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Ordenar":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaOrdenar("", "Enunciado 3", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Emparejar":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearPreguntaAsociar("", "Enunciado 4", "Enum1", "Enum2",
+//                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+//
+//                case "Completar":
+//                    //Obtener  el enunciado hasta el momento iran quemados
+//
+//                    crearPreguntaCompletar("", "Enunciado 5");
+//
+//                case "Verdadero/Falso":
+//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+//
+//                    crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
+//
+//                case "Pregunta Padre":
+//                    //Obtener las subpreguntas y los tipos
+//
+//                    crearPreguntaPadre("", "Enunciado 7", new HashMap<>(), new ArrayList<>());
+//            }
+//
+//        }
 
     }
 
     private void crearPreguntaUnicaRespuesta(String numPreg, String enunciado, String res1, String res2, String res3,
                                              String res4){
-        VBox vBoxEnunciado = new VBox();
+        VBox vBoxEnunciado = new VBox(30);
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
 
         Label labelUnicaRespuesta = new Label(numPreg + ". " + enunciado);
+        labelUnicaRespuesta.setPrefWidth(500);
+        labelUnicaRespuesta.setWrapText(true);
         setEstiloLabel(labelUnicaRespuesta);
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        VBox vBoxRespuestas = new VBox();
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+
+        VBox vBoxRespuestas = new VBox(10);
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
         setRespuestasUR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
+
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,30));
+
+
     }
 
     private void setEstiloLabel(Node node){
@@ -126,6 +183,7 @@ public class PresentarExamenController implements Initializable {
         vBox.getChildren().add(respuesta2);
         vBox.getChildren().add(respuesta3);
         vBox.getChildren().add(respuesta4);
+
     }
 
     private  void crearPreguntaMultipleRespuesta(String numPreg, String enunciado, String res1, String res2,
@@ -139,10 +197,16 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        VBox vBoxRespuestas = new VBox();
+        VBox vBoxRespuestas = new VBox(10);
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
+
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,30));
+
         setRespuestasMR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
+
+
     }
 
     private void setRespuestasMR(VBox vBox, String res1, String res2, String res3, String res4) {
@@ -171,10 +235,14 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.getChildren().add(labelUnicaRespuesta);
         rootVBox.getChildren().add(vBoxEnunciado);
 
-        HBox hBox = new HBox();
+        HBox hBox = new HBox(30);
         hBox.setAlignment(Pos.CENTER);
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
+        hBox.setPadding(new Insets(15,0,0,0));
         setVerdaderFalso(hBox, idVerdadero, idFalso);
         rootVBox.getChildren().add(hBox);
+
+
     }
 
     private void setVerdaderFalso(HBox hBox, String idVerdadero, String idFalso) {

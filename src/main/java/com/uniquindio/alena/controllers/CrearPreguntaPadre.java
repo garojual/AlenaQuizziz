@@ -22,7 +22,6 @@ public class CrearPreguntaPadre implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-
     }
 
     private void crearActionComboBox(ComboBox comboBox){

@@ -193,4 +193,8 @@
         public void setPadre(boolean padre) {
             isPadre = padre;
         }
+
+        public Map<String, Integer> getPreguntasMapa(){
+            return preguntasMap;
+        }
     }
