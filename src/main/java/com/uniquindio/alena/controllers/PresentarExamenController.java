@@ -139,6 +139,7 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
 
+
         Label labelUnicaRespuesta = new Label(numPreg + ". " + enunciado);
         labelUnicaRespuesta.setPrefWidth(500);
         labelUnicaRespuesta.setWrapText(true);
@@ -153,13 +154,13 @@ public class PresentarExamenController implements Initializable {
         setRespuestasUR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
 
-        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,30));
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,60));
 
 
     }
 
     private void setEstiloLabel(Node node){
-        node.setStyle("-fx-font: 13 arial;");
+        node.setStyle("-fx-font: 15 roboto;");
     }
 
     private void setCheckboxClickFunct(CheckBox node){
@@ -183,6 +184,11 @@ public class PresentarExamenController implements Initializable {
         respuesta3.setToggleGroup(grupoRespuestas);
         respuesta4.setToggleGroup(grupoRespuestas);
 
+        respuesta1.setStyle("-fx-font: 13 roboto;");
+        respuesta2.setStyle("-fx-font: 13 roboto;");
+        respuesta3.setStyle("-fx-font: 13 roboto;");
+        respuesta4.setStyle("-fx-font: 13 roboto;");
+
         vBox.getChildren().add(respuesta1);
         vBox.getChildren().add(respuesta2);
         vBox.getChildren().add(respuesta3);
@@ -205,7 +211,7 @@ public class PresentarExamenController implements Initializable {
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
 
         VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
-        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,30));
+        VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,60));
 
         setRespuestasMR(vBoxRespuestas, res1, res2, res3, res4);
         rootVBox.getChildren().add(vBoxRespuestas);
@@ -222,6 +228,11 @@ public class PresentarExamenController implements Initializable {
         setCheckboxClickFunct(respuesta3);
         CheckBox respuesta4 = new CheckBox(res4);
         setCheckboxClickFunct(respuesta4);
+
+        respuesta1.setStyle("-fx-font: 13 roboto;");
+        respuesta2.setStyle("-fx-font: 13 roboto;");
+        respuesta3.setStyle("-fx-font: 13 roboto;");
+        respuesta4.setStyle("-fx-font: 13 roboto;");
 
         vBox.getChildren().add(respuesta1);
         vBox.getChildren().add(respuesta2);
@@ -252,8 +263,10 @@ public class PresentarExamenController implements Initializable {
     private void setVerdaderFalso(HBox hBox, String idVerdadero, String idFalso) {
         RadioButton verdadero = new RadioButton("Verdadero");
         verdadero.setId(idVerdadero);
+        verdadero.setStyle("-fx-font: 13 roboto;");
         RadioButton falso = new RadioButton("Falso");
         falso.setId(idFalso);
+        falso.setStyle("-fx-font: 13 roboto;");
 
         ToggleGroup VFToogleGroup = new ToggleGroup();
 
@@ -265,8 +278,10 @@ public class PresentarExamenController implements Initializable {
     }
 
     private void crearPreguntaOrdenar(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
-        VBox vBoxEnunciado = new VBox();
+        VBox vBoxEnunciado = new VBox(10);
         vBoxEnunciado.setAlignment(Pos.CENTER);
+
+        VBox.setMargin(vBoxEnunciado, new Insets(30,0,0,0));
 
         Label labelOrdenar = new Label(numPreg + ". " + enunciado);
         labelOrdenar.setId("10");
@@ -280,6 +295,13 @@ public class PresentarExamenController implements Initializable {
         Label label4 = new Label(res4);
         label4.setId("4");
 
+        setEstiloLabel(labelOrdenar);
+
+        label1.setStyle("-fx-font: 13 roboto;");
+        label2.setStyle("-fx-font: 13 roboto;");
+        label3.setStyle("-fx-font: 13 roboto;");
+        label4.setStyle("-fx-font: 13 roboto;");
+
         ObservableList<Integer> opciones = FXCollections.observableArrayList(
                 1,2,3,4
         );
@@ -287,21 +309,25 @@ public class PresentarExamenController implements Initializable {
         comboBox1.setItems(opciones);
         comboBox1.setId("1");
         asignarActionOrdenar(comboBox1);
+        comboBox1.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox2 = new ComboBox<>();
         comboBox2.setItems(opciones);
         comboBox2.setId("2");
         asignarActionOrdenar(comboBox2);
+        comboBox2.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox3 = new ComboBox<>();
         comboBox3.setItems(opciones);
         comboBox3.setId("3");
         asignarActionOrdenar(comboBox3);
+        comboBox3.setStyle("-fx-font: 13 roboto;");
 
         ComboBox comboBox4 = new ComboBox<>();
         comboBox4.setItems(opciones);
         comboBox4.setId("4");
         asignarActionOrdenar(comboBox4);
+        comboBox4.setStyle("-fx-font: 13 roboto;");
 
         vBoxEnunciado.getChildren().add(labelOrdenar);
         vBoxEnunciado.getChildren().add(label1);
