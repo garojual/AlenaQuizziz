@@ -17,10 +17,7 @@
     import java.io.IOException;
     import java.net.URL;
     import java.sql.*;
-    import java.util.ArrayList;
-    import java.util.HashMap;
-    import java.util.Map;
-    import java.util.ResourceBundle;
+    import java.util.*;
 
     import static oracle.jdbc.OracleTypes.*;
 
@@ -248,7 +245,7 @@
 
         @FXML
         private void onFinalizar(ActionEvent event){
-            ArrayList<Integer> examenes_alumno = new ArrayList<>();
+            List<Integer> examenesAlumno = obtenerExamenesAlumno(sharedData.getIdExamen());
             try {
                 Connection connection = databaseConnection.getConnection();
                 String CALL_FINALIZAR_EXAMEN = "{ call finalizar_examen (?) }";
@@ -280,16 +277,33 @@
                 throw new RuntimeException(ex);
             }
 
+            // Llamar a la función CALL_EXAMEN_ALUMNO para cada examen de alumno obtenido
+            for (Integer idExamenAlumno : examenesAlumno) {
+                try {
+                    Connection connection = databaseConnection.getConnection();
+                    String CALL_EXAMEN_ALUMNO = "{ call generar_examenes_alumno_proc (?, ?, ?) }";
+                    CallableStatement callableStatement = connection.prepareCall(CALL_EXAMEN_ALUMNO);
+                    callableStatement.setString(1, sharedData.getDocenteId());
+                    callableStatement.setInt(2, sharedData.getIdCurso());
+                    callableStatement.setInt(3, idExamenAlumno);
+                    callableStatement.execute();
+                    System.out.println("funciona x2");
+                    callableStatement.close();
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             try {
-                String CALL_PREGUNTAS_ALUMNO = "{ call procesar_examen_alumno (?) }";
-                Connection connection = databaseConnection.getConnection();
-                CallableStatement callableStatement2 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
-                callableStatement2.setInt(1, sharedData.getIdExamen());
-                callableStatement2.execute();
-                System.out.println("funciona x2");
-                callableStatement2.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/inicio.fxml"));
+                Parent root = loader.load();
+                // Mostrar la nueva pantalla
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert.error("Error al cargar la nueva pantalla: " );
             }
         }
 
@@ -310,11 +324,31 @@
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                // Manejar la excepción (mostrar un mensaje de error, registrarla, etc.)
             }
         }
 
         public void setDatabaseConnection(DataBaseConnection databaseConnection) {
             this.databaseConnection = databaseConnection;
+        }
+
+        private List<Integer> obtenerExamenesAlumno(int idExamen) {
+            List<Integer> examenesAlumno = new ArrayList<>();
+            try {
+                Connection connection = databaseConnection.getConnection();
+                String CALL_OBTENER_EXAMENES_ALUMNO = "{ call obtener_examenes_alumno(?) }";
+                CallableStatement callableStatement = connection.prepareCall(CALL_OBTENER_EXAMENES_ALUMNO);
+                callableStatement.setInt(1, idExamen);
+                ResultSet resultSet = callableStatement.executeQuery();
+                while (resultSet.next()) {
+                    int idExamenAlumno = resultSet.getInt("id_examen_alumno");
+                    examenesAlumno.add(idExamenAlumno);
+                }
+                resultSet.close();
+                callableStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return examenesAlumno;
         }
     }

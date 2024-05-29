@@ -230,7 +230,6 @@ public class CrearExamenController implements Initializable {
             int id= resultSet.getInt("ID_TEMA");
             String tema = resultSet.getString("NOMBRE_TEMA");
             sharedData.setTemasMapExam(tema,id);
-            System.out.println(sharedData.getTemasMapExam(tema));
             temas.add(tema);
         }
         return temas;

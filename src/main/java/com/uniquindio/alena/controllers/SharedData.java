@@ -178,7 +178,7 @@
         }
 
         public Map<String, Integer> getPreguntasHijasMapa() {
-            return preguntasHijasMap;
+            return this.preguntasHijasMap;
         }
 
         public void setPreguntasHijasMapa(Map<String, Integer> preguntasHijasMapa) {
