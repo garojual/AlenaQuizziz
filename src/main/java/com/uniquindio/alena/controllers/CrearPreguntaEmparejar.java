@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,12 +19,10 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CrearPreguntaMultipleRespuesta implements Initializable {
-
+public class CrearPreguntaEmparejar implements Initializable {
     private DataBaseConnection databaseConnection = new DataBaseConnection();
     SharedData sharedData = SharedData.getInstance();
     @FXML
@@ -29,7 +30,6 @@ public class CrearPreguntaMultipleRespuesta implements Initializable {
 
     @FXML
     private TextArea enunciado;
-
     @FXML
     private TextField respuesta1;
     @FXML
@@ -38,40 +38,29 @@ public class CrearPreguntaMultipleRespuesta implements Initializable {
     private TextField respuesta3;
     @FXML
     private TextField respuesta4;
+    @FXML
+    private TextField par1;
+    @FXML
+    private TextField par2;
+    @FXML
+    private TextField par3;
+    @FXML
+    private TextField par4;
+    private List<TextField> textFieldsRespuestas;
+    private List<TextField> textFieldsPar;
 
-    @FXML
-    private CheckBox CheckBox1;
-    @FXML
-    private CheckBox CheckBox2;
-    @FXML
-    private CheckBox CheckBox3;
-    @FXML
-    private CheckBox CheckBox4;
-
-    private List<CheckBox> checkBoxes;
-    private List<TextField> textFields;
-    private ArrayList<String> seleccion = new ArrayList<>();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Inicializamos listas de CheckBoxes y TextFields
-        checkBoxes = List.of(CheckBox1, CheckBox2, CheckBox3, CheckBox4);
-        textFields = List.of(respuesta1, respuesta2, respuesta3, respuesta4);
-
         temaLabel.setText(sharedData.getSelectedTemaPregunta());
-
-        // Agregar acciones a los CheckBoxes
-        for (CheckBox checkBox : checkBoxes) {
-            addActionCheckBox(checkBox);
-        }
     }
 
     @FXML
     private void crear(ActionEvent event) {
         String enunciadoText = enunciado.getText();
         String tema = temaLabel.getText();
-        String tipo = "Multiple respuesta";
+        String tipo = "Emparejar";
         String estado = "Finalizada";
         int id_pregunta;
 
@@ -100,15 +89,15 @@ public class CrearPreguntaMultipleRespuesta implements Initializable {
             throw new RuntimeException(e);
         }
 
-        for (int i = 0; i < textFields.size(); i++) {
+        for (int i = 0; i < textFieldsRespuestas.size(); i++) {
             try {
-                String respuestaText = textFields.get(i).getText();
-                CheckBox checkBox = checkBoxes.get(i);
+                String respuestaText = textFieldsRespuestas.get(i).getText();
+                String parText = textFieldsPar.get(i).getText();
                 String ADD_RESPUESTA = "{ call ADD_RESPUESTA(?,?,?) }";
                 Connection connection1 = databaseConnection.getConnection();
                 CallableStatement callableStatement1 = connection1.prepareCall(ADD_RESPUESTA);
                 callableStatement1.setString(1, respuestaText);
-                callableStatement1.setString(2, checkBox.isSelected() ? "correcta" : "incorrecta");
+                callableStatement1.setString(2, parText);
                 callableStatement1.setInt(3, id_pregunta);
                 callableStatement1.execute();
 
@@ -118,11 +107,6 @@ public class CrearPreguntaMultipleRespuesta implements Initializable {
         }
     }
 
-    private void addActionCheckBox(CheckBox checkBox) {
-        checkBox.setOnAction(e -> {
-            seleccion.add(checkBox.getId().toString());
-        });
-    }
 
     @FXML
     private void cancelar(ActionEvent event) {
@@ -137,9 +121,5 @@ public class CrearPreguntaMultipleRespuesta implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void setDatabaseConnection(DataBaseConnection databaseConnection) {
-        this.databaseConnection = databaseConnection;
     }
 }

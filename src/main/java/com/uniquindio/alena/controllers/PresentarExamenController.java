@@ -11,8 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import oracle.jdbc.OracleTypes;
 
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,37 +32,46 @@ public class PresentarExamenController implements Initializable {
     @FXML
     public ScrollPane rootScrollPane;
 
-    private HashMap preguntas;
+    private HashMap<String,Integer> preguntas;
 
     public PresentarExamenController() {
     }
 
-    private DataBaseConnection conexionDB; // Conexión a la base de datos
+    private DataBaseConnection dataBaseConnection = new DataBaseConnection(); // Conexión a la base de datos
 
     public void setDatabaseConnection(DataBaseConnection conexionDB) {
-        this.conexionDB = conexionDB;
+        this.dataBaseConnection = conexionDB;
     }
 
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // Obtener preguntas y respuestas de la base de datos
-//        String consulta = "SELECT p.id_pregunta, p.enunciado, p.tipo_pregunta, r.id_respuesta, r.enunciado_respuesta " +
-//                "FROM pregunta p " +
-//                "LEFT JOIN respuesta r ON p.id_pregunta = r.id_pregunta";
+        // Obtener preguntas del examen desde la base de datos
+        int examenId = 1; // Reemplaza esto con el ID del examen que estés presentando
+        preguntas = new HashMap<>();
+        String GET_PREGUNTAS= ("{ ? = call get_preguntas(?) }");
 
-//        try {
-//            DataBaseConnection dataBaseConnection = new DataBaseConnection();
-//            Connection connection = dataBaseConnection.getConnection();
-//
-//            PreparedStatement statement = connection.prepareStatement(consulta);
-//            ResultSet rs = statement.executeQuery();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+        try {
+            Connection connection = dataBaseConnection.getConnection();
+            CallableStatement callableStatement = connection.prepareCall(GET_PREGUNTAS);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.setInt(2, examenId);
+            callableStatement.execute();
+            ResultSet rs = (ResultSet) callableStatement.getObject(1);
+
+            while (rs.next()) {
+                int preguntaId = rs.getInt("id_pregunta");
+                String enunciado = rs.getString("enunciado");
+                preguntas.put(enunciado,preguntaId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
             // Manejar la excepción de manera adecuada
-//        }
+        }
+
+        ObservableList<String> respuestas = FXCollections.observableArrayList();
+
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
@@ -80,52 +94,66 @@ public class PresentarExamenController implements Initializable {
 //        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
 //
 //        //Obtener los tipos de la pregunta
-//        Map<Integer, String> tipos = new HashMap<>();
-//
-//        for(String key: preguntas.keySet()){
-//            int idPregunta = preguntas.get(key);
-//            String tipo = tipos.get(idPregunta);
-//
-//            switch (tipo){
-//
-//                case "Única respuesta":
-//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
-//
-//                    crearPreguntaUnicaRespuesta("", "Enunciado 1", "Res1", "Res2", "Res3", "Res4");
-//
-//                case "Múltiple respuesta":
-//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
-//
-//                    crearPreguntaMultipleRespuesta("","Enunciado 2", "Res1", "Res2", "Res3", "Res4");
-//
-//                case "Ordenar":
-//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
-//
-//                    crearPreguntaOrdenar("", "Enunciado 3", "Res1", "Res2", "Res3", "Res4");
-//
-//                case "Emparejar":
-//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
-//
-//                    crearPreguntaAsociar("", "Enunciado 4", "Enum1", "Enum2",
-//                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
-//
-//                case "Completar":
-//                    //Obtener  el enunciado hasta el momento iran quemados
-//
-//                    crearPreguntaCompletar("", "Enunciado 5");
-//
-//                case "Verdadero/Falso":
-//                    //Obtener los enunciados y respuestas hasta el momento iran quemados
-//
-//                    crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
-//
-//                case "Pregunta Padre":
-//                    //Obtener las subpreguntas y los tipos
-//
-//                    crearPreguntaPadre("", "Enunciado 7", new HashMap<>(), new ArrayList<>());
-//            }
-//
-//        }
+        Map<Integer, String> tipos = new HashMap<>();
+
+        for(String key: preguntas.keySet()){
+            int idPregunta = preguntas.get(key);
+            String tipo = tipos.get(idPregunta);
+            try {
+                CallableStatement cs = dataBaseConnection.getConnection().prepareCall("{ ? = call get_respuestas(?) }");
+                cs.registerOutParameter(1, OracleTypes.CURSOR);
+                cs.setInt(2, idPregunta);
+                cs.execute();
+                ResultSet rs = (ResultSet) cs.getObject(1);
+
+                while (rs.next()) {
+                    String enunciadoRespuesta = rs.getString("enunciado_respuesta");
+                    respuestas.add(enunciadoRespuesta);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Manejar la excepción de manera adecuada
+            }
+            switch (tipo){
+
+                case "Única respuesta":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+
+                    crearPreguntaUnicaRespuesta("", "Enunciado 1", "Res1", "Res2", "Res3", "Res4");
+
+                case "Múltiple respuesta":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+
+                    crearPreguntaMultipleRespuesta("","Enunciado 2", "Res1", "Res2", "Res3", "Res4");
+
+                case "Ordenar":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+
+                    crearPreguntaOrdenar("", "Enunciado 3", "Res1", "Res2", "Res3", "Res4");
+
+                case "Emparejar":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+
+                    crearPreguntaAsociar("", "Enunciado 4", "Enum1", "Enum2",
+                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+
+                case "Completar":
+                    //Obtener  el enunciado hasta el momento iran quemados
+
+                    crearPreguntaCompletar("", "Enunciado 5");
+
+                case "Verdadero/Falso":
+                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+
+                    crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
+
+                case "Pregunta Padre":
+                    //Obtener las subpreguntas y los tipos
+
+                    crearPreguntaPadre("", "Enunciado 7", new HashMap<>(), new ArrayList<>());
+            }
+
+        }
         //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
         SharedData sharedData = SharedData.getInstance();
         Map<String, Integer> preguntas = sharedData.getPreguntasMapa();

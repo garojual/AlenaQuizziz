@@ -16,6 +16,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CrearPreguntaUnicaRespuesta implements Initializable {
@@ -56,10 +57,16 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
     private ToggleGroup toggleGroup;
 
     String seleccionCorrecta;
+    List<RadioButton> radioButtons;
+    private List<TextField> textFields;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        radioButtons = List.of(radioButon1,radioButon2,radioButon3,redioButon4);
+        textFields = List.of(respuesta1, respuesta2, respuesta3, respuesta4);
+
         toggleGroup = new ToggleGroup();
         radioButon1.setToggleGroup(toggleGroup);
         radioButon2.setToggleGroup(toggleGroup);
@@ -72,7 +79,6 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
         addActionRadioButton(redioButon4);
 
         String selectedTema = sharedData.getSelectedTemaPregunta();
-        String selectedTipoPregunta = sharedData.getSelectedTipoPregunta();
 
         temaLabel.setText(selectedTema);
 
@@ -110,34 +116,24 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
             throw new RuntimeException(e);
         }
 
-        for(int i=1; i<=4;i++){
+        for (int i = 0; i < textFields.size(); i++) {
             try {
-                String respuesta = "respuesta" + i;
-                String boton = "radioButon" + i;
+                String respuestaText = textFields.get(i).getText();
+                RadioButton radioButton = radioButtons.get(i);
                 String ADD_RESPUESTA = "{ call ADD_RESPUESTA(?,?,?) }";
                 Connection connection1 = dataBaseConnection.getConnection();
                 CallableStatement callableStatement1 = connection1.prepareCall(ADD_RESPUESTA);
-                callableStatement1.setString(1,respuesta);
-                if(boton.equals(seleccionCorrecta)){
-                    callableStatement1.setString(2,"correcta");
-                }
-                else {
-                    callableStatement1.setString(2,"incorrecta");
-                }
-                callableStatement1.setInt(3,id_pregunta);
+                callableStatement1.setString(1, respuestaText);
+                callableStatement1.setString(2, radioButton.isSelected() ? "correcta" : "incorrecta");
+                callableStatement1.setInt(3, id_pregunta);
                 callableStatement1.execute();
-
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
         }
-
-
-
-
-
-    }
+   }
 
     private void addActionRadioButton(RadioButton radioButton){
         radioButton.setOnAction(e ->{

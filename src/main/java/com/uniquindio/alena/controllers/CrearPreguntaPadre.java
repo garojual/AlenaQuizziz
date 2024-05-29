@@ -1,5 +1,7 @@
 package com.uniquindio.alena.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +30,7 @@ public class CrearPreguntaPadre implements Initializable {
     @FXML
     TextArea enunciadoTextArea;
 
-    DataBaseConnection dataBaseConnection;
+    DataBaseConnection dataBaseConnection =new DataBaseConnection();
 
     SharedData sharedData = SharedData.getInstance();
     @Override
@@ -39,6 +41,10 @@ public class CrearPreguntaPadre implements Initializable {
     }
 
     private void crearActionComboBox(ComboBox comboBox){
+        ObservableList<Integer> num = FXCollections.observableArrayList(
+                1,2,3,4,5
+        );
+        numPreguntas.setItems(num);
         comboBox.setOnAction(e -> {
             sharedData.setNumSubPreguntas((Integer)(comboBox.getSelectionModel().getSelectedItem()));
         });
@@ -58,8 +64,10 @@ public class CrearPreguntaPadre implements Initializable {
             callableStatement.setString(6, enunciadoTextArea.getText());
             callableStatement.setString(7,sharedData.getDocenteId());
             callableStatement.setString(8,"finalizada");
+            callableStatement.execute();
+            int id= callableStatement.getInt(1);
 
-            sharedData.setPadre(callableStatement.getInt(1));
+            sharedData.setPadre(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

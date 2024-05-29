@@ -122,6 +122,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Única respuesta":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_unica_respuesta.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -129,6 +130,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Múltiple respuesta":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_mult_resp.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -136,6 +138,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Ordenar":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_ordenar.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -143,6 +146,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Emparejar":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_asociar.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -150,6 +154,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Completar":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_completar.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -157,6 +162,7 @@ public class CrearSubPreguntas implements Initializable {
                 case "Verdadero/Falso":
                     try {
                         openNewWindow("/com/uniquindio/alena/crear_pregunta_v_f.fxml");
+                        break;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.CrearPreguntaOrdenar">
+<AnchorPane prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uniquindio.alena.controllers.CrearPreguntaOrdenar">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="600.0">
          <children>
@@ -29,7 +29,7 @@
                   <Insets bottom="5.0" />
                </padding>
             </Label>
-            <Label fx:id="tema" text="Tema:">
+            <Label fx:id="temaLabel" text="Tema:">
                <font>
                   <Font size="13.0" />
                </font>
@@ -140,12 +140,12 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="410.0" prefHeight="61.0" prefWidth="600.0">
          <children>
-            <Button fx:id="cancelar" mnemonicParsing="false" text="Cancelar">
+            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="crear" mnemonicParsing="false" text="Crear Pregunta">
+            <Button mnemonicParsing="false" onAction="#crear" text="Crear Pregunta">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
