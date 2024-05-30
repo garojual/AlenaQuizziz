@@ -34,6 +34,8 @@ public class PresentarExamenController implements Initializable {
 
     private HashMap<String,Integer> preguntas;
 
+    String globalEnunciado = "";
+
     public PresentarExamenController() {
     }
 
@@ -60,8 +62,10 @@ public class PresentarExamenController implements Initializable {
             callableStatement.execute();
             ResultSet rs = (ResultSet) callableStatement.getObject(1);
 
+            int preguntaId;
+
             while (rs.next()) {
-                int preguntaId = rs.getInt("id_pregunta");
+                preguntaId = rs.getInt("id_pregunta");
                 String enunciado = rs.getString("enunciado");
                 preguntas.put(enunciado,preguntaId);
             }
@@ -119,17 +123,28 @@ public class PresentarExamenController implements Initializable {
                 case "Única respuesta":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
 
-                    crearPreguntaUnicaRespuesta("", "Enunciado 1", "Res1", "Res2", "Res3", "Res4");
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearPreguntaUnicaRespuesta("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
+                        }
+                    });
 
                 case "Múltiple respuesta":
-                    //Obtener los enunciados y respuestas hasta el momento iran quemados
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearPreguntaMultipleRespuesta("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
+                        }
+                    });
 
-                    crearPreguntaMultipleRespuesta("","Enunciado 2", "Res1", "Res2", "Res3", "Res4");
 
                 case "Ordenar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
 
-                    crearPreguntaOrdenar("", "Enunciado 3", "Res1", "Res2", "Res3", "Res4");
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearPreguntaOrdenar("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
+                        }
+                    });
 
                 case "Emparejar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
