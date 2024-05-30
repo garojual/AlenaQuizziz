@@ -169,6 +169,8 @@
                 }
                 else{
                     try {
+                        int questionId = sharedData.getPreguntasMap(selectedQuestion);
+                        addQuestionToExam(questionId,selectedOption);
                         int i = 0;
                         openNewWindow();
                         listaExamenActual.getItems().add(selectedQuestion);

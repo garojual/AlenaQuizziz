@@ -133,6 +133,17 @@ public class CrearPreguntaUnicaRespuesta implements Initializable {
             }
 
         }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/crear_examen_preguntas.fxml"));
+            Parent root = loader.load();
+
+            // Mostrar la nueva pantalla
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
    }
 
     private void addActionRadioButton(RadioButton radioButton){
