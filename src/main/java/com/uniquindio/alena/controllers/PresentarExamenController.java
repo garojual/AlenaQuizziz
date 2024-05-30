@@ -32,7 +32,10 @@ public class PresentarExamenController implements Initializable {
     @FXML
     public ScrollPane rootScrollPane;
 
-    private HashMap<String,Integer> preguntas;
+    private HashMap<String,Integer> preguntas = new HashMap<>();
+    Map<Integer, String> tipos = new HashMap<>();
+
+    private ArrayList<String> respuestasCorrectas = new ArrayList<>();
 
     String globalEnunciado = "";
 
@@ -67,7 +70,9 @@ public class PresentarExamenController implements Initializable {
             while (rs.next()) {
                 preguntaId = rs.getInt("id_pregunta");
                 String enunciado = rs.getString("enunciado");
+                String tipo= rs.getString("tipo_pregunta");
                 preguntas.put(enunciado,preguntaId);
+                tipos.put(preguntaId,tipo);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +103,7 @@ public class PresentarExamenController implements Initializable {
 //        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
 //
 //        //Obtener los tipos de la pregunta
-        Map<Integer, String> tipos = new HashMap<>();
+
 
         for(String key: preguntas.keySet()){
             int idPregunta = preguntas.get(key);
@@ -112,6 +117,9 @@ public class PresentarExamenController implements Initializable {
 
                 while (rs.next()) {
                     String enunciadoRespuesta = rs.getString("enunciado_respuesta");
+                    int idrespuesta= rs.getInt("id_respuesta");
+                    String respuestacorrecta = rs.getString("respuesta_correcta");
+                    respuestasCorrectas.add(respuestacorrecta);
                     respuestas.add(enunciadoRespuesta);
                 }
             } catch (SQLException e) {
