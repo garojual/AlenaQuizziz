@@ -53,7 +53,7 @@ public class PresentarExamenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Obtener preguntas del examen desde la base de datos
-        int examenId = 1; // Reemplaza esto con el ID del examen que estés presentando
+        int examenId = 81; // Reemplaza esto con el ID del examen que estés presentando
         preguntas = new HashMap<>();
         String GET_PREGUNTAS= ("{ ? = call get_preguntas(?) }");
 
@@ -84,25 +84,6 @@ public class PresentarExamenController implements Initializable {
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
-//        crearPreguntaUnicaRespuesta("1", "Harry Potter y la piedra filosofal fue publicado por primera vez por Bloomsbury en el Reino Unido en", "1995", "1996", "1997", "1998");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-//        crearPreguntaCompletar("6", "Enunciado______");
-
-//        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
-//        SharedData sharedData = SharedData.getInstance();
-//        Map<String, Integer> preguntas = sharedData.getPreguntasMapa();
-//
-//        //Obtener los tipos de la pregunta
 
 
         for(String key: preguntas.keySet()){
@@ -136,6 +117,7 @@ public class PresentarExamenController implements Initializable {
                             crearPreguntaUnicaRespuesta("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
                         }
                     });
+                    break;
 
                 case "Múltiple respuesta":
                     preguntas.forEach((keyPreg, value) ->{
@@ -143,6 +125,7 @@ public class PresentarExamenController implements Initializable {
                             crearPreguntaMultipleRespuesta("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
                         }
                     });
+                    break;
 
 
                 case "Ordenar":
@@ -153,6 +136,7 @@ public class PresentarExamenController implements Initializable {
                             crearPreguntaOrdenar("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3));
                         }
                     });
+                    break;
 
                 case "Emparejar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
@@ -163,21 +147,25 @@ public class PresentarExamenController implements Initializable {
                                     respuestasCorrectas.get(0), respuestasCorrectas.get(1), respuestasCorrectas.get(2), respuestasCorrectas.get(3));
                         }
                     });
+                    break;
 
                 case "Completar":
                     //Obtener  el enunciado hasta el momento iran quemados
 
                     crearPreguntaCompletar("", "Enunciado 5");
+                    break;
 
                 case "Verdadero/Falso":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
 
                     crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
+                    break;
 
                 case "Pregunta Padre":
                     //Obtener las subpreguntas y los tipos
 
                     crearPreguntaPadre("", "Enunciado 7", new HashMap<>(), new ArrayList<>());
+                    break;
             }
 
         }
@@ -554,32 +542,38 @@ public class PresentarExamenController implements Initializable {
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearPreguntaUnicaRespuesta("", "Enunciado 6.1", "Res1", "Res2", "Res3", "Res4");
+                    break;
 
                 case "Múltiple respuesta":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearPreguntaMultipleRespuesta("","Enunciado 6.2", "Res1", "Res2", "Res3", "Res4");
+                    break;
 
                 case "Ordenar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearPreguntaOrdenar("", "Enunciado 6.3", "Res1", "Res2", "Res3", "Res4");
+                    break;
 
                 case "Emparejar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearPreguntaAsociar("", "Enunciado 6.4", "Enum1", "Enum2",
                             "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+                    break;
 
                 case "Completar":
                     //Obtener  el enunciado hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearPreguntaCompletar("", "Enunciado 6.5");
+                    break;
 
                 case "Verdadero/Falso":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
                     crearMetodoVerdaderoFalso("", "Enunciado 6.6", "id001", "id002");
+                    break;
             }
 
             i++;
@@ -587,5 +581,3 @@ public class PresentarExamenController implements Initializable {
     }
 
 }
-
-    // Obtener el contenedor de la pantalla
