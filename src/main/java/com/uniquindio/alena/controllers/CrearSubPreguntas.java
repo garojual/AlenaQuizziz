@@ -45,6 +45,7 @@ public class CrearSubPreguntas implements Initializable {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         Button button = new Button("Finalizar");
+        addActionButtonFinalizar(button);
         hBox.getChildren().add(button);
         rootVBox.getChildren().add(hBox);
     }

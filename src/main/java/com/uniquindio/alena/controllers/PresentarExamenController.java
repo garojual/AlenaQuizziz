@@ -84,19 +84,19 @@ public class PresentarExamenController implements Initializable {
         System.out.println("Prueba");
         rootVBox.setPrefWidth(600);
         rootVBox.setAlignment(Pos.TOP_CENTER);
-        crearPreguntaUnicaRespuesta("1", "Harry Potter y la piedra filosofal fue publicado por primera vez por Bloomsbury en el Reino Unido en", "1995", "1996", "1997", "1998");
-        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
-        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
-        crearPreguntaCompletar("6", "Enunciado______");
+//        crearPreguntaUnicaRespuesta("1", "Harry Potter y la piedra filosofal fue publicado por primera vez por Bloomsbury en el Reino Unido en", "1995", "1996", "1997", "1998");
+//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3", "1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaMultipleRespuesta("2", "Enunciado2", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearMetodoVerdaderoFalso("3", "Enunciado3","1", "2");
+//        crearPreguntaUnicaRespuesta("1", "Enunciado1", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaOrdenar("4","Enunciado4","Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaAsociar("5", "Enunciado5", "subEnunciado1", "subEnunciado2", "subEnunciado3", "subEnunciado4", "Respuesta1", "Respuesta2", "Respuesta3", "Respuesta4");
+//        crearPreguntaCompletar("6", "Enunciado______");
 
 //        //Traerse a como de lugar e ignorando todos los acuerdos de derechos humanos en Ginebra, las preguntas.
 //        SharedData sharedData = SharedData.getInstance();
@@ -157,8 +157,12 @@ public class PresentarExamenController implements Initializable {
                 case "Emparejar":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
 
-                    crearPreguntaAsociar("", "Enunciado 4", "Enum1", "Enum2",
-                            "Enum3", "Enum4", "Res1", "Res2", "Res3", "Res4");
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearPreguntaAsociar("", keyPreg, respuestas.get(0), respuestas.get(1), respuestas.get(2), respuestas.get(3),
+                                    respuestasCorrectas.get(0), respuestasCorrectas.get(1), respuestasCorrectas.get(2), respuestasCorrectas.get(3));
+                        }
+                    });
 
                 case "Completar":
                     //Obtener  el enunciado hasta el momento iran quemados
@@ -203,6 +207,8 @@ public class PresentarExamenController implements Initializable {
         VBox vBoxRespuestas = new VBox(10);
         vBoxRespuestas.setAlignment(Pos.CENTER_LEFT);
         setRespuestasUR(vBoxRespuestas, res1, res2, res3, res4);
+        Button button = new Button("Enviar");
+        vBoxRespuestas.getChildren().add(button);
         rootVBox.getChildren().add(vBoxRespuestas);
 
         VBox.setMargin(vBoxRespuestas, new Insets(15,0,0,60));
@@ -280,6 +286,8 @@ public class PresentarExamenController implements Initializable {
         CheckBox respuesta4 = new CheckBox(res4);
         setCheckboxClickFunct(respuesta4);
 
+        Button button = new Button("Enviar");
+
         respuesta1.setStyle("-fx-font: 13 roboto;");
         respuesta2.setStyle("-fx-font: 13 roboto;");
         respuesta3.setStyle("-fx-font: 13 roboto;");
@@ -289,6 +297,7 @@ public class PresentarExamenController implements Initializable {
         vBox.getChildren().add(respuesta2);
         vBox.getChildren().add(respuesta3);
         vBox.getChildren().add(respuesta4);
+        vBox.getChildren().add(button);
     }
 
     private void crearMetodoVerdaderoFalso(String numPreg, String enunciado, String idVerdadero, String idFalso){
@@ -319,13 +328,17 @@ public class PresentarExamenController implements Initializable {
         falso.setId(idFalso);
         falso.setStyle("-fx-font: 13 roboto;");
 
+
         ToggleGroup VFToogleGroup = new ToggleGroup();
 
         verdadero.setToggleGroup(VFToogleGroup);
         falso.setToggleGroup(VFToogleGroup);
 
+        Button button = new Button("Enviar");
+
         hBox.getChildren().add(verdadero);
         hBox.getChildren().add(falso);
+        hBox.getChildren().add(button);
     }
 
     private void crearPreguntaOrdenar(String numPreg, String enunciado, String res1, String res2, String res3, String res4){
@@ -380,6 +393,8 @@ public class PresentarExamenController implements Initializable {
         asignarActionOrdenar(comboBox4);
         comboBox4.setStyle("-fx-font: 13 roboto;");
 
+        Button button = new Button("Enviar");
+
         vBoxEnunciado.getChildren().add(labelOrdenar);
         vBoxEnunciado.getChildren().add(label1);
         vBoxEnunciado.getChildren().add(comboBox1);
@@ -389,6 +404,7 @@ public class PresentarExamenController implements Initializable {
         vBoxEnunciado.getChildren().add(comboBox3);
         vBoxEnunciado.getChildren().add(label4);
         vBoxEnunciado.getChildren().add(comboBox4);
+        vBoxEnunciado.getChildren().add(button);
 
         rootVBox.getChildren().add(vBoxEnunciado);
 
@@ -465,11 +481,14 @@ public class PresentarExamenController implements Initializable {
         hBox4.getChildren().add(label4);
         hBox4.getChildren().add(comboBox4);
 
+        Button button = new Button("Enviar");
+
         vBoxEnunciado.getChildren().add(labelAsociar);
         vBoxEnunciado.getChildren().add(hBox1);
         vBoxEnunciado.getChildren().add(hBox2);
         vBoxEnunciado.getChildren().add(hBox3);
         vBoxEnunciado.getChildren().add(hBox4);
+        vBoxEnunciado.getChildren().add(button);
 
         rootVBox.getChildren().add(vBoxEnunciado);
 
@@ -497,7 +516,8 @@ public class PresentarExamenController implements Initializable {
 
         Label label = new Label(numPreg + ". " + enunciadoPrincipal);
         TextField textField = new TextField();
-        Button button = new Button("Guardar");
+        Button button = new Button("Enviar");
+
 
         vBox.getChildren().add(label);
         vBox.getChildren().add(textField);
