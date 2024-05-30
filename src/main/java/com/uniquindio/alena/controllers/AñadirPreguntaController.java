@@ -13,6 +13,7 @@
     import javafx.scene.control.ListView;
     import javafx.scene.layout.AnchorPane;
     import javafx.stage.Stage;
+    import oracle.jdbc.OracleTypes;
 
     import java.io.IOException;
     import java.net.URL;
@@ -260,22 +261,9 @@
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-            CallableStatement callableStatement1 = null;
-            try {
-                String CALL_EXAMEN_ALUMNO = "{ call generar_examenes_alumno_proc (?,?,?) }";
-                Connection connection = databaseConnection.getConnection();
-                callableStatement1 = connection.prepareCall(CALL_EXAMEN_ALUMNO);
-                callableStatement1.setString(1,sharedData.getDocenteId());
-                callableStatement1.setInt(2,sharedData.getIdCurso());
-                callableStatement1.setInt(3,examenIdExamen);
-                callableStatement1.execute();
-                System.out.println("funciona");
-                callableStatement1.close();
-                connection.close();
 
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            CallableStatement callableStatement1 = null;
+
 
             // Llamar a la función CALL_EXAMEN_ALUMNO para cada examen de alumno obtenido
             for (Integer idExamenAlumno : examenesAlumno) {
@@ -287,13 +275,27 @@
                     callableStatement.setInt(2, sharedData.getIdCurso());
                     callableStatement.setInt(3, idExamenAlumno);
                     callableStatement.execute();
-                    System.out.println("funciona x2");
+                    System.out.println("funciona");
                     callableStatement.close();
                     connection.close();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             }
+
+
+            try {
+                String CALL_PREGUNTAS_ALUMNO = "{ call procesar_examen_alumno (?) }";
+                Connection connection = databaseConnection.getConnection();
+                CallableStatement callableStatement2 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                callableStatement2.setInt(1, sharedData.getIdExamen());
+                callableStatement2.execute();
+                System.out.println("funciona x2");
+                callableStatement2.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uniquindio/alena/inicio.fxml"));
                 Parent root = loader.load();
@@ -335,12 +337,14 @@
             List<Integer> examenesAlumno = new ArrayList<>();
             try {
                 Connection connection = databaseConnection.getConnection();
-                String CALL_OBTENER_EXAMENES_ALUMNO = "{ call obtener_examenes_alumno(?) }";
+                String CALL_OBTENER_EXAMENES_ALUMNO = "{ ? = call obtener_examenes_alumno(?) }";
                 CallableStatement callableStatement = connection.prepareCall(CALL_OBTENER_EXAMENES_ALUMNO);
-                callableStatement.setInt(1, idExamen);
-                ResultSet resultSet = callableStatement.executeQuery();
+                callableStatement.registerOutParameter(1, CURSOR);
+                callableStatement.setInt(2,idExamen);
+                callableStatement.execute();
+                ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
                 while (resultSet.next()) {
-                    int idExamenAlumno = resultSet.getInt("id_examen_alumno");
+                    int idExamenAlumno = resultSet.getInt("id_examen");
                     examenesAlumno.add(idExamenAlumno);
                 }
                 resultSet.close();
