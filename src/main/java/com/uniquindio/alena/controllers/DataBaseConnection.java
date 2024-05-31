@@ -8,7 +8,7 @@ public class DataBaseConnection {
         Connection jdbcConnection = null;
         // Establecer la conexión con la base de datos
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
-        String user = "sys as sysdba";
+        String user = "BD2";
         String password = "1234";
         try {
             // Cargar el controlador JDBC

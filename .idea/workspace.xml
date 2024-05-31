@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="Perhaps this is hell">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_1.xml" beforeDir="false" />
+    <list default="true" id="732c8d68-355a-4aac-b559-012e61bb09d1" name="Changes" comment="little details">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7f8a2795-fb77-48f9-b96a-199a4014066d/storage_v2/_src_/schema/BD2.MAABAA.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2024_5_47_p__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearSubPreguntas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/CrearSubPreguntas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/PresentarExamenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/AñadirPreguntaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uniquindio/alena/controllers/DataBaseConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="1136656150dabbb6b84d44c39e5c056f78e4723e" />
+        <entry key="$PROJECT_DIR$" value="007165f1905fadac53e2f13d92047cbd6ac6aaa9" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -111,6 +115,8 @@
       <list>
         <item itemvalue="Application.Application" />
         <item itemvalue="Application.Application" />
+        <item itemvalue="Application.Application" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -134,7 +140,10 @@
       <workItem from="1716404742480" duration="6146000" />
       <workItem from="1716687965033" duration="10237000" />
       <workItem from="1716735325180" duration="1596000" />
-      <workItem from="1717039060557" duration="7686000" />
+      <workItem from="1717041569778" duration="6377000" />
+      <workItem from="1717114475254" duration="1808000" />
+      <workItem from="1717116317036" duration="1504000" />
+      <workItem from="1717118218636" duration="5027000" />
     </task>
     <task id="LOCAL-00001" summary="connection to database and creation of base interfaces">
       <option name="closed" value="true" />
@@ -256,15 +265,39 @@
       <option name="project" value="LOCAL" />
       <updated>1716779003183</updated>
     </task>
-    <task id="LOCAL-00016" summary="Perhaps this is hell">
+    <task id="LOCAL-00016" summary="half fixed">
       <option name="closed" value="true" />
-      <created>1717042596504</created>
+      <created>1717042358726</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1717042596504</updated>
+      <updated>1717042358726</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="half fixed">
+      <option name="closed" value="true" />
+      <created>1717042737410</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717042737410</updated>
+    </task>
+    <task id="LOCAL-00018" summary="half fixed">
+      <option name="closed" value="true" />
+      <created>1717044439437</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717044439438</updated>
+    </task>
+    <task id="LOCAL-00019" summary="little details">
+      <option name="closed" value="true" />
+      <created>1717047981263</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717047981264</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +328,8 @@
     <MESSAGE value="insert exams to the database" />
     <MESSAGE value="insert examen_alumno" />
     <MESSAGE value="Perhaps this is hell" />
-    <option name="LAST_COMMIT_MESSAGE" value="Perhaps this is hell" />
+    <MESSAGE value="half fixed" />
+    <MESSAGE value="little details" />
+    <option name="LAST_COMMIT_MESSAGE" value="little details" />
   </component>
 </project>

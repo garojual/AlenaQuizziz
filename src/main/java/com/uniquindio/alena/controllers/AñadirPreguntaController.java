@@ -132,58 +132,59 @@
             String selectedQuestion = questionListView.getSelectionModel().getSelectedItem();
             Integer selectedOption = porcentaje.getSelectionModel().getSelectedItem();
             String selectedQuestionType;
+
             try {
                 String QUESTION_TYPE = "{ ? = call get_tipo(?) }";
-                Connection connection=databaseConnection.getConnection();
+                Connection connection = databaseConnection.getConnection();
                 CallableStatement callableStatement = connection.prepareCall(QUESTION_TYPE);
                 callableStatement.registerOutParameter(1, Types.VARCHAR);
-                callableStatement.setInt(2,sharedData.getPreguntasMap(selectedQuestion));
+                callableStatement.setInt(2, sharedData.getPreguntasMap(selectedQuestion));
                 callableStatement.execute();
                 selectedQuestionType = callableStatement.getString(1);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
-            if (selectedOption == null){
+            if (selectedOption == null) {
                 showAlert.error("Debe seleccionar un porcentaje para la pregunta");
+                return;
             }
-            if(numPreguntas > sharedData.getNumPreguntas()){
+            if (numPreguntas >= sharedData.getNumPreguntas()) {
                 showAlert.error("Ya agregó todas las preguntas del examen");
+                return;
             }
-            if (selectedQuestion != null && selectedOption != null && numPreguntas < sharedData.getNumPreguntas()) {
-                System.out.println(selectedQuestionType);
-                if(!selectedQuestionType.equals("Pregunta padre")) {
-                    // Añadir la pregunta seleccionada a la lista de preguntas del examen
+
+            if (selectedQuestion != null && selectedOption != null) {
+                int questionId = sharedData.getPreguntasMap(selectedQuestion);
+
+                if (!selectedQuestionType.equals("Pregunta padre")) {
+                    // Añadir pregunta normal
                     listaExamenActual.getItems().add(selectedQuestion);
                     numPreguntas += 1;
                     questionListView.getItems().remove(selectedQuestion);
-
-                    // Obtener el ID de la pregunta seleccionada
-                    int questionId = sharedData.getPreguntasMap(selectedQuestion);
-
-                    // Lógica para añadir la pregunta al examen en la base de datos
                     if (examenIdExamen != 0) {
                         addQuestionToExam(questionId, selectedOption);
                     }
                     listaSubPreguntas.getItems().clear();
-                }
-                else{
+                } else {
+                    // Añadir pregunta padre y abrir ventana para subpreguntas
                     try {
-                        int questionId = sharedData.getPreguntasMap(selectedQuestion);
-                        addQuestionToExam(questionId,selectedOption);
-                        int i = 0;
-                        openNewWindow();
+                        // Añadir pregunta padre
                         listaExamenActual.getItems().add(selectedQuestion);
                         numPreguntas += 1;
                         questionListView.getItems().remove(selectedQuestion);
-                        listaSubPreguntas.getItems().clear();
 
+                        if (examenIdExamen != 0) {
+                            addQuestionToExam(questionId, selectedOption);
+                        }
+                        openNewWindow(); // Abrir ventana para agregar subpreguntas
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 }
             }
         }
+
 
         private void openNewWindow() throws Exception {
             Stage newStage = new Stage();
@@ -248,7 +249,7 @@
 
         @FXML
         private void onFinalizar(ActionEvent event){
-            List<Integer> examenesAlumno = obtenerExamenesAlumno(sharedData.getIdExamen());
+
             try {
                 Connection connection = databaseConnection.getConnection();
                 String CALL_FINALIZAR_EXAMEN = "{ call finalizar_examen (?) }";
@@ -257,45 +258,45 @@
                 System.out.println(examenIdExamen);
                 System.out.println(sharedData.getIdCurso());
                 callableStatement.execute();
-                callableStatement.close();
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
 
-            CallableStatement callableStatement1 = null;
 
 
-            // Llamar a la función CALL_EXAMEN_ALUMNO para cada examen de alumno obtenido
-            for (Integer idExamenAlumno : examenesAlumno) {
                 try {
                     Connection connection = databaseConnection.getConnection();
                     String CALL_EXAMEN_ALUMNO = "{ call generar_examenes_alumno_proc (?, ?, ?) }";
-                    CallableStatement callableStatement = connection.prepareCall(CALL_EXAMEN_ALUMNO);
-                    callableStatement.setString(1, sharedData.getDocenteId());
-                    callableStatement.setInt(2, sharedData.getIdCurso());
-                    callableStatement.setInt(3, idExamenAlumno);
-                    callableStatement.execute();
+                    CallableStatement callableStatement1 = connection.prepareCall(CALL_EXAMEN_ALUMNO);
+                    callableStatement1.setString(1, sharedData.getDocenteId());
+                    callableStatement1.setInt(2, sharedData.getIdCurso());
+                    callableStatement1.setInt(3, examenIdExamen);
+                    callableStatement1.execute();
                     System.out.println("funciona");
-                    callableStatement.close();
+                    callableStatement1.close();
                     connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+
+            List<Integer> examenesAlumno = obtenerExamenesAlumno(sharedData.getIdExamen());
+            System.out.println("Examenes del alumno obtenidos: " + examenesAlumno.size());
+
+            for (Integer idExamenAlumno : examenesAlumno) {
+                try {
+                    String CALL_PREGUNTAS_ALUMNO = "{ call procesar_examen_alumno (?) }";
+                    Connection connection = databaseConnection.getConnection();
+                    CallableStatement callableStatement2 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
+                    callableStatement2.setInt(1, idExamenAlumno);
+                    callableStatement2.execute();
+                    System.out.println("funciona x2");
+                    callableStatement2.close();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            }
-
-
-            try {
-                String CALL_PREGUNTAS_ALUMNO = "{ call procesar_examen_alumno (?) }";
-                Connection connection = databaseConnection.getConnection();
-                CallableStatement callableStatement2 = connection.prepareCall(CALL_PREGUNTAS_ALUMNO);
-                callableStatement2.setInt(1, sharedData.getIdExamen());
-                callableStatement2.execute();
-                System.out.println("funciona x2");
-                callableStatement2.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
 
             try {
