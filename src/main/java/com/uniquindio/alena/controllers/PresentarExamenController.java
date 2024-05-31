@@ -37,6 +37,8 @@ public class PresentarExamenController implements Initializable {
 
     private ArrayList<String> respuestasCorrectas = new ArrayList<>();
 
+    private ArrayList<Integer> respuestasCorrectasID = new ArrayList<>();
+
     String globalEnunciado = "";
 
     public PresentarExamenController() {
@@ -102,6 +104,7 @@ public class PresentarExamenController implements Initializable {
                     String respuestacorrecta = rs.getString("respuesta_correcta");
                     respuestasCorrectas.add(respuestacorrecta);
                     respuestas.add(enunciadoRespuesta);
+                    respuestasCorrectasID.add(idrespuesta);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -152,13 +155,21 @@ public class PresentarExamenController implements Initializable {
                 case "Completar":
                     //Obtener  el enunciado hasta el momento iran quemados
 
-                    crearPreguntaCompletar("", "Enunciado 5");
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearPreguntaCompletar("", keyPreg);
+                        }
+                    });
                     break;
 
                 case "Verdadero/Falso":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados
 
-                    crearMetodoVerdaderoFalso("", "Enunciado 6", "id001", "id002");
+                    preguntas.forEach((keyPreg, value) ->{
+                        if(idPregunta == value){
+                            crearMetodoVerdaderoFalso("", keyPreg, respuestasCorrectasID.get(0), respuestasCorrectasID.get(1));
+                        }
+                    });
                     break;
 
                 case "Pregunta Padre":
@@ -288,7 +299,7 @@ public class PresentarExamenController implements Initializable {
         vBox.getChildren().add(button);
     }
 
-    private void crearMetodoVerdaderoFalso(String numPreg, String enunciado, String idVerdadero, String idFalso){
+    private void crearMetodoVerdaderoFalso(String numPreg, String enunciado, int idVerdadero, int idFalso){
         VBox vBoxEnunciado = new VBox();
         vBoxEnunciado.setAlignment(Pos.CENTER);
         vBoxEnunciado.setPrefWidth(600);
@@ -308,12 +319,12 @@ public class PresentarExamenController implements Initializable {
 
     }
 
-    private void setVerdaderFalso(HBox hBox, String idVerdadero, String idFalso) {
+    private void setVerdaderFalso(HBox hBox, int idVerdadero, int idFalso) {
         RadioButton verdadero = new RadioButton("Verdadero");
-        verdadero.setId(idVerdadero);
+        verdadero.setId(String.valueOf(idVerdadero));
         verdadero.setStyle("-fx-font: 13 roboto;");
         RadioButton falso = new RadioButton("Falso");
-        falso.setId(idFalso);
+        falso.setId(String.valueOf(idFalso));
         falso.setStyle("-fx-font: 13 roboto;");
 
 
@@ -499,12 +510,18 @@ public class PresentarExamenController implements Initializable {
     }
 
     private void crearPreguntaCompletar(String numPreg, String enunciadoPrincipal){
-        VBox vBox = new VBox();
+        VBox vBox = new VBox(10);
         vBox.setAlignment(Pos.CENTER);
+
+        VBox.setMargin(vBox, new Insets(30,0,0,0));
 
         Label label = new Label(numPreg + ". " + enunciadoPrincipal);
         TextField textField = new TextField();
         Button button = new Button("Enviar");
+
+        textField.setPrefWidth(400);
+        textField.setMinWidth(400);
+        textField.setMaxWidth(400);
 
 
         vBox.getChildren().add(label);
@@ -572,7 +589,7 @@ public class PresentarExamenController implements Initializable {
                 case "Verdadero/Falso":
                     //Obtener los enunciados y respuestas hasta el momento iran quemados, el unico que ira como vacio es numPreg
 
-                    crearMetodoVerdaderoFalso("", "Enunciado 6.6", "id001", "id002");
+                    //crearMetodoVerdaderoFalso("", "Enunciado 6.6", "id001", "id002");
                     break;
             }
 
